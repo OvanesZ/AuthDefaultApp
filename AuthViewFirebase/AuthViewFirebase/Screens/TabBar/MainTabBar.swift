@@ -14,7 +14,7 @@ struct MainTabBar: View {
     var body: some View {
         
         TabView {
-            FirstView()
+            HomeView(viewModel: HomeViewModel(present: PresentModel()))
                 .tabItem {
                     VStack {
                         Image(systemName: "person.circle")
