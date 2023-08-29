@@ -6,21 +6,29 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 
-struct UserModel: Identifiable {
+struct UserModel: Codable, Identifiable {
     
     var id: String
-    var name: String
-    var phone: Int
+    var email: String
+    var displayName: String
+    var phoneNumber: Int
     var address: String
+    var userImageURLText = ""
+    var userImage: URL? { URL(string: "\(userImageURLText)")}
+    var isFriend = false
     
     var representation: [String: Any] {
         var repres = [String: Any]()
         repres["id"] = self.id
-        repres["name"] = self.name
-        repres["phone"] = self.phone
+        repres["email"] = self.email
+        repres["displayName"] = self.displayName
+        repres["phoneNumber"] = self.phoneNumber
         repres["address"] = self.address
+        repres["userImageURLText"] = self.userImageURLText
         
         return repres
     }

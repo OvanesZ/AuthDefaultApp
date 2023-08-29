@@ -14,7 +14,7 @@ struct MainTabBar: View {
     var body: some View {
         
         TabView {
-            HomeView(viewModel: HomeViewModel(present: PresentModel()))
+            HomeView(viewModel: HomeViewModel())
                 .tabItem {
                     VStack {
                         Image(systemName: "person.circle")
@@ -30,7 +30,7 @@ struct MainTabBar: View {
                     }
                 }
             
-            ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", name: "", phone: 0000000000, address: "")))
+            ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", email: "", displayName: "", phoneNumber: 0000000000, address: "")))
                 .tabItem {
                     VStack {
                         Image(systemName: "person.circle")

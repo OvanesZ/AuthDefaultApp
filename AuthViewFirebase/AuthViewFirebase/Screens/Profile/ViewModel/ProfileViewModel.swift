@@ -17,10 +17,10 @@ class ProfileViewModel: ObservableObject {
     
     
     func setProfile() {
-        DatabaseService.shared.setProfile(user: self.profile) { result in
+        DatabaseService.shared.setProfile(user: profile) { result in
             switch result {
             case .success(let user):
-                print(user.name)
+                print(user.displayName)
             case .failure(let error):
                 print("Ошибка при отправке данных на сервер \(error.localizedDescription)")
             }

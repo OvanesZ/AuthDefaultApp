@@ -40,7 +40,7 @@ struct HomeView: View {
                         pinnedViews: [.sectionFooters]
                     ) {
                         Section() {
-                            ForEach(viewModel.mockWishlist) { present in
+                            ForEach(viewModel.wishlist) { present in
                                 PresentCellView(present: present)
                             }
                         }
@@ -57,7 +57,7 @@ struct HomeView: View {
                 .padding(.leading, 250)
                 .padding(.top, 420)
                 .sheet(isPresented: $isShowingNewPresentView) {
-//                    NewPresentView(viewModel: PresentModelViewModel(present: PresentModel()), userViewModel: UserViewModel())
+                    NewPresentView(viewModel: PresentModelViewModel(present: PresentModel()), userViewModel: HomeViewModel())
                 }
 //                .preferredColorScheme(.dark)
 //                .toolbarColorScheme(.dark, for: .tabBar)

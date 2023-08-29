@@ -48,12 +48,12 @@ struct ProfileView: View {
                     }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    TextField("Имя", text: $viewModel.profile.name)
+                    TextField("Имя", text: $viewModel.profile.displayName)
                         .font(.body.bold())
                     
                     HStack {
                         Text("+7")
-                        TextField("Телефон", value: $viewModel.profile.phone, format: .number)
+                        TextField("Телефон", value: $viewModel.profile.phoneNumber, format: .number)
                     }
                 }
             }
@@ -104,8 +104,8 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", name: "Имя Фамилия", phone: 9055709845, address: "Ваш адрес будет тут")))
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", displayName: "Имя Фамилия", phone: 9055709845, address: "Ваш адрес будет тут")))
+//    }
+//}

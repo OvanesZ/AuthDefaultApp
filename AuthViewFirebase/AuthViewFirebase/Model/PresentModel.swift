@@ -15,10 +15,14 @@ struct PresentModel: Codable, Identifiable {
     var name: String? = ""
     var havePhoto: Bool = false
     var urlText = ""
-//    var presentFromUser: UserModel = UserModel(id: "", name: "", phone: 0, address: "")
+    
+    var presentFromUser: UserModel = UserModel(id: "", email: "", displayName: "", phoneNumber: 0, address: "")
+
     var isReserved = false
     
     var presentImageURLText = ""
     var presentImage: URL? { URL(string: "\(presentImageURLText)")}
     var presentDescription = ""
+    
+ 
 }

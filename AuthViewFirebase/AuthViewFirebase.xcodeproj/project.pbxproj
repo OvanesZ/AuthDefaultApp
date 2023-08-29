@@ -34,6 +34,8 @@
 		4EEF21CC2A9D0580001B736F /* PresentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21CB2A9D0580001B736F /* PresentView.swift */; };
 		4EEF21CF2A9D05AD001B736F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4EEF21CE2A9D05AD001B736F /* Kingfisher */; };
 		4EEF21D62A9D0B6D001B736F /* PresentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21D52A9D0B6D001B736F /* PresentViewModel.swift */; };
+		4EEF21DD2A9E5B41001B736F /* CyrcleShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21DC2A9E5B41001B736F /* CyrcleShadow.swift */; };
+		4EEF21DF2A9E704C001B736F /* NewPresentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21DE2A9E704C001B736F /* NewPresentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		4EEF21C72A9CFF97001B736F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4EEF21CB2A9D0580001B736F /* PresentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentView.swift; sourceTree = "<group>"; };
 		4EEF21D52A9D0B6D001B736F /* PresentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentViewModel.swift; sourceTree = "<group>"; };
+		4EEF21DC2A9E5B41001B736F /* CyrcleShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyrcleShadow.swift; sourceTree = "<group>"; };
+		4EEF21DE2A9E704C001B736F /* NewPresentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 				4ED389CD2A91574F007E30D1 /* Preview Content */,
 				4ED38A0C2A9269F4007E30D1 /* Screens */,
 				4ED38A0A2A9269D7007E30D1 /* Service */,
+				4EEF21DC2A9E5B41001B736F /* CyrcleShadow.swift */,
 			);
 			path = AuthViewFirebase;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				4EEF21CB2A9D0580001B736F /* PresentView.swift */,
+				4EEF21DE2A9E704C001B736F /* NewPresentView.swift */,
 				4EEF21C52A9CFC90001B736F /* PresentCellView.swift */,
 			);
 			path = View;
@@ -464,6 +470,7 @@
 				4ED389F62A924D43007E30D1 /* SecondView.swift in Sources */,
 				4EEF21C62A9CFC90001B736F /* PresentCellView.swift in Sources */,
 				4ED389F42A924D2C007E30D1 /* HomeView.swift in Sources */,
+				4EEF21DD2A9E5B41001B736F /* CyrcleShadow.swift in Sources */,
 				4ED389CA2A91574E007E30D1 /* AuthView.swift in Sources */,
 				4ED389F82A924E48007E30D1 /* ProfileView.swift in Sources */,
 				4ED38A052A926692007E30D1 /* MainTabBarViewModel.swift in Sources */,
@@ -476,6 +483,7 @@
 				4EEF21CC2A9D0580001B736F /* PresentView.swift in Sources */,
 				4EEF21D62A9D0B6D001B736F /* PresentViewModel.swift in Sources */,
 				4ED38A032A926008007E30D1 /* AuthService.swift in Sources */,
+				4EEF21DF2A9E704C001B736F /* NewPresentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

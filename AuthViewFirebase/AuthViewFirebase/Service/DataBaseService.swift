@@ -38,12 +38,13 @@ class DatabaseService {
             
             guard let data = snap.data() else { return }
             
-            guard let userName = data["name"] as? String else { return }
             guard let id = data["id"] as? String else { return }
-            guard let phone = data["phone"] as? Int else { return }
+            guard let email = data["email"] as? String else { return }
+            guard let displayName = data["displayName"] as? String else { return }
+            guard let phoneNumber = data["phoneNumber"] as? Int else { return }
             guard let address = data["address"] as? String else { return }
             
-            let user = UserModel(id: id, name: userName, phone: phone, address: address)
+            let user = UserModel(id: id, email: email, displayName: displayName, phoneNumber: phoneNumber, address: address)
             
             completion(.success(user))
         }

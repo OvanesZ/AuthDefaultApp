@@ -11,19 +11,12 @@ import Kingfisher
 struct PresentModalView: View {
     
     let currentPresent: PresentModel
-    @ObservedObject var viewModel: HomeViewModel
-//    @ObservedObject var presentModelViewModel: PresentModelViewModel
+    @ObservedObject var presentModelViewModel: PresentModelViewModel
     let nameTextUrl: String = "[Ссылка на подарок]"
     
-//    init(currentPresent: PresentModel, viewModel: UserViewModel, presentModelViewModel: PresentModelViewModel) {
-//        self.currentPresent = currentPresent
-//        self.viewModel = viewModel
-//        self.presentModelViewModel = presentModelViewModel
-//    }
-    
-    init(currentPresent: PresentModel, viewModel: HomeViewModel) {
+    init(currentPresent: PresentModel, presentModelViewModel: PresentModelViewModel) {
         self.currentPresent = currentPresent
-        self.viewModel = viewModel
+        self.presentModelViewModel = presentModelViewModel
     }
     
     var body: some View {
@@ -52,7 +45,7 @@ struct PresentModalView: View {
             
             
             HStack {
-                Text(viewModel.present.presentDescription)
+                Text(presentModelViewModel.present.presentDescription)
                     .frame(minHeight: 25, idealHeight: 25, maxHeight: 50)
                 
                     .foregroundColor(.gray)
@@ -67,12 +60,12 @@ struct PresentModalView: View {
             Divider()
                 .padding()
             
-//            HStack {
-//                Text(.init(nameTextUrl+"(\(viewModel.mockWishlist.urlText))"))
-//                    .underline()
-//                    .padding(.leading, 15)
-//                Spacer()
-//            }
+            HStack {
+                Text(.init(nameTextUrl+"(\(presentModelViewModel.present.urlText))"))
+                    .underline()
+                    .padding(.leading, 15)
+                Spacer()
+            }
             
             Divider()
                 .padding()
@@ -83,10 +76,11 @@ struct PresentModalView: View {
             
             VStack {
                 HStack {
-                    if viewModel.present.isReserved {
+                    if presentModelViewModel.isHiddenReservButton {
                         Text("Подарит")
                             .font(.title2)
                             .bold()
+                            .foregroundColor(.white)
                             .opacity(15)
                             .padding(.leading, 15)
                         
@@ -94,31 +88,34 @@ struct PresentModalView: View {
                         Text("Подарок свободен")
                             .font(.title2)
                             .bold()
+                            .foregroundColor(.white)
                             .opacity(15)
                             .padding(.leading, 15)
                     }
                     Spacer()
                 }
                 
-//                HStack {
-//                    if viewModel.present.isReserved {
-//
-//                        KFImage(viewModel.mockWishlist.first?.presentImageURLText)
-//                            .resizable()
-//                        //                                .padding(.leading, 15)
-//                            .frame(width: 70, height: 70)
-////                            .modifier(CircleShadow(shadowColor: .white, shadowRadius: 0))
-//
-//                        Text(viewModel.mockWishlist.presentFromUser.displayName)
-//                            .font(.title2)
-//                            .opacity(15)
-//                            .padding(.leading, 15)
-//                    } else {
-//
-//                    }
-//                    Spacer()
-//                }
-//                .padding(.leading, 15)
+                HStack {
+                    if presentModelViewModel.isHiddenReservButton {
+                        
+                        KFImage(presentModelViewModel.present.presentFromUser.userImage)
+                            .resizable()
+                        //                                .padding(.leading, 15)
+                            .frame(width: 70, height: 70)
+                            .modifier(CircleShadow(shadowColor: .white, shadowRadius: 0))
+                        
+                        Text(presentModelViewModel.present.presentFromUser.displayName)
+                            .font(.title2)
+                        //                                .bold()
+                            .foregroundColor(.white)
+                            .opacity(15)
+                            .padding(.leading, 15)
+                    } else {
+                        
+                    }
+                    Spacer()
+                }
+                .padding(.leading, 15)
                 
                 
             }
@@ -129,7 +126,7 @@ struct PresentModalView: View {
             // MARK: -- Кнопки удалить
             
             Button(action: {
-                viewModel.removingPresentFromWishlist(currentPresent.name ?? "")
+                presentModelViewModel.removingPresentFromWishlist(currentPresent.name ?? "")
             }) {
                 Image(systemName: "trash")
                     .font(.largeTitle)
@@ -139,3 +136,4 @@ struct PresentModalView: View {
         
     }
 }
+
