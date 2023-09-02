@@ -35,6 +35,7 @@ struct AuthView: View {
                 .cornerRadius(12)
                 .padding(8)
                 .padding(.horizontal, 12)
+                .keyboardType(.emailAddress)
             
             SecureField("Введите пароль", text: $password)
                 .textFieldStyle(.roundedBorder)

@@ -30,6 +30,13 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 
+//                GeometryReader { geometry in
+//                    Image("bg_present")
+//                        .resizable()
+//                        .edgesIgnoringSafeArea(.all)
+//                        .aspectRatio(contentMode: .fill)
+//                }
+                
                 // MARK: -- LazyVGrid
                 
                 ScrollView {
@@ -46,6 +53,14 @@ struct HomeView: View {
                         }
                     }
                 }
+                .background(
+                    Image("bg_present")
+                    .resizable()
+                    .opacity(0.2)
+//                    .edgesIgnoringSafeArea(.all)
+                    .aspectRatio(contentMode: .fill)
+                )
+                
                 
                 Button {
                     isShowingNewPresentView = true
@@ -80,6 +95,6 @@ struct HomeView: View {
 //
 //struct HomeView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        HomeView()
+//        HomeView(viewModel: HomeViewModel())
 //    }
 //}

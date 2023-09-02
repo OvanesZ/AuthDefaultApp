@@ -44,7 +44,6 @@ class PresentModelViewModel: ObservableObject {
             "presentFromUser.email": user.email,
             "presentFromUser.displayName": user.displayName,
             "presentFromUser.userImageURLText": user.userImageURLText,
-            "presentFromUser.isFriend": user.isFriend,
             "isReserved": true
         ]) { error in
             if let error = error {

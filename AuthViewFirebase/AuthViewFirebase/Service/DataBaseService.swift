@@ -43,12 +43,16 @@ class DatabaseService {
             guard let displayName = data["displayName"] as? String else { return }
             guard let phoneNumber = data["phoneNumber"] as? Int else { return }
             guard let address = data["address"] as? String else { return }
+            guard let userImageURLText = data["userImageURLText"] as? String else { return }
+            guard let friendsID = data["friendsID"] as? [String] else { return }
             
-            let user = UserModel(id: id, email: email, displayName: displayName, phoneNumber: phoneNumber, address: address)
+            let user = UserModel(id: id, email: email, displayName: displayName, phoneNumber: phoneNumber, address: address, userImageURLText: userImageURLText, friendsID: friendsID)
             
             completion(.success(user))
         }
     }
+    
+    
     
 }
 

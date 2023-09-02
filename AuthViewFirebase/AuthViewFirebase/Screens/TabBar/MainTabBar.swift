@@ -11,30 +11,31 @@ struct MainTabBar: View {
     
     var viewModel: MainTabBarViewModel
     
+    
     var body: some View {
         
         TabView {
             HomeView(viewModel: HomeViewModel())
                 .tabItem {
                     VStack {
-                        Image(systemName: "person.circle")
-                        Text("First")
+                        Image(systemName: "rectangle.3.group")
+                        Text("Главная")
                     }
                 }
             
-            SecondView()
+            FriendsView(friendViewModel: FriendsViewModel(friend: UserModel(id: "", email: "", displayName: "", phoneNumber: 0000000000, address: "")), userViewModel: HomeViewModel())
                 .tabItem {
                     VStack {
-                        Image(systemName: "person.circle")
-                        Text("Second")
+                        Image(systemName: "person.3.sequence")
+                        Text("Друзья")
                     }
                 }
             
             ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", email: "", displayName: "", phoneNumber: 0000000000, address: "")))
                 .tabItem {
                     VStack {
-                        Image(systemName: "person.circle")
-                        Text("Second")
+                        Image(systemName: "gearshape")
+                        Text("Профиль")
                     }
                 }
         }

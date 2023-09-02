@@ -14,7 +14,6 @@ import FirebaseStorage
 final class HomeViewModel: ObservableObject {
     
     
-    @Published var users: [UserModel] = []
     @Published var wishlist: [PresentModel] = [] // будет содержать все подарки пользователя
     var currentUser = Auth.auth().currentUser
     
@@ -22,7 +21,6 @@ final class HomeViewModel: ObservableObject {
     init() {
         fetchWishlist()
     }
-    
     
     
     
@@ -42,6 +40,7 @@ final class HomeViewModel: ObservableObject {
             } ?? []
         }
     }
+    
     
     
     // MARK: -- Удаляю подарок из коллекции "Wishlist"

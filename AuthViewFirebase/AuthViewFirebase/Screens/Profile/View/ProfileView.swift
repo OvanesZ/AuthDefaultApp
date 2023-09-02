@@ -54,6 +54,7 @@ struct ProfileView: View {
                     HStack {
                         Text("+7")
                         TextField("Телефон", value: $viewModel.profile.phoneNumber, format: .number)
+                            .keyboardType(.phonePad)
                     }
                 }
             }

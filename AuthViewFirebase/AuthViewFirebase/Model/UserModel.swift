@@ -19,7 +19,7 @@ struct UserModel: Codable, Identifiable {
     var address: String
     var userImageURLText = ""
     var userImage: URL? { URL(string: "\(userImageURLText)")}
-    var isFriend = false
+    var friendsID: [String] = [""]
     
     var representation: [String: Any] {
         var repres = [String: Any]()
@@ -29,6 +29,7 @@ struct UserModel: Codable, Identifiable {
         repres["phoneNumber"] = self.phoneNumber
         repres["address"] = self.address
         repres["userImageURLText"] = self.userImageURLText
+        repres["friendsID"] = self.friendsID
         
         return repres
     }
