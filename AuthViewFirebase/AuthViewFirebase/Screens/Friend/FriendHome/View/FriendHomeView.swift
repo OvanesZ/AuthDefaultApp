@@ -18,44 +18,43 @@ struct FriendHomeView: View {
     
     var body: some View {
         
-        
-        VStack {
-            
-            HeaderFriendCell(viewModel: viewModel)
+            VStack {
+                
+                HeaderFriendCell(viewModel: viewModel)
+                
+                Divider()
+                    .padding([.leading, .trailing], 25)
+                
+                Button {
+                    viewModel.loadNewFriendInCollection(viewModel.friend)
+                } label: {
+                    Text("Подписаться")
+                }
+                .buttonStyle(.bordered)
+            }
             
             Divider()
-                .padding([.leading, .trailing], 25)
             
-            Button {
-                viewModel.loadNewFriendInCollection(viewModel.friend)
-            } label: {
-                Text("Подписаться")
-            }
-            .buttonStyle(.bordered)
-        }
-        
-        Divider()
-        
-        ScrollView {
-            LazyVGrid (
-                columns: columns,
-                alignment: .center,
-                spacing: 15,
-                pinnedViews: [.sectionFooters]
-            ) {
-                Section() {
-                    ForEach(viewModel.wishlist) { present in
-                        FriendPresentsMainView(present: present, friendHomeViewModel: viewModel)
+            ScrollView {
+                LazyVGrid (
+                    columns: columns,
+                    alignment: .center,
+                    spacing: 15,
+                    pinnedViews: [.sectionFooters]
+                ) {
+                    Section() {
+                        ForEach(viewModel.wishlist) { present in
+                            FriendPresentsMainView(present: present, friendHomeViewModel: viewModel)
+                        }
                     }
                 }
             }
+            .background(
+                Image("bg_present")
+                    .resizable()
+                    .opacity(0.2)
+                    .aspectRatio(contentMode: .fill)
+            )
             .navigationTitle(viewModel.friend.displayName)
-        }
-        .background(
-            Image("bg_present")
-            .resizable()
-            .opacity(0.2)
-            .aspectRatio(contentMode: .fill)
-        )
     }
 }

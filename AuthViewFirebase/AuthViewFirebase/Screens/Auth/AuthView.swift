@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AuthView: View {
     
@@ -16,6 +17,14 @@ struct AuthView: View {
     @State private var isTabViewShow = false
     @State private var isShowAlert = false
     @State private var alertMessage = ""
+    @State var shouldShowLogo: Bool = true
+    
+    private let keyboardPublisher = Publishers.Merge(
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
+            .map { notification in true } ,
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
+            .map { notification in false }
+    ).eraseToAnyPublisher()
     
     var body: some View {
         
@@ -23,18 +32,28 @@ struct AuthView: View {
         
         VStack {
             
+            if shouldShowLogo {
+                Image("bg_present")
+                    .resizable()
+                    .frame(width: 240, height: 240)
+                    .clipped()
+                    .blur(radius: isAuth ? 6 : 0)
+                    .padding(.top, -95)
+            }
+            
             Text(isAuth ? "Регистрация" : "Авторизация")
-                .padding()
+                .padding(8)
                 .padding(.horizontal, 30)
                 .font(.largeTitle)
-                .background(Color.orange)
-                .cornerRadius(30)
+                .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)), Color(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                .cornerRadius(20)
             
             TextField("Логин", text: $login)
                 .textFieldStyle(.roundedBorder)
                 .cornerRadius(12)
                 .padding(8)
                 .padding(.horizontal, 12)
+                .shadow(color: .orange, radius: 5)
                 .keyboardType(.emailAddress)
             
             SecureField("Введите пароль", text: $password)
@@ -42,6 +61,7 @@ struct AuthView: View {
                 .cornerRadius(12)
                 .padding(8)
                 .padding(.horizontal, 12)
+                .shadow(color: .orange, radius: 5)
             
             if isAuth {
                 SecureField("Повторите пароль", text: $verifyPassword)
@@ -49,6 +69,7 @@ struct AuthView: View {
                     .cornerRadius(12)
                     .padding(8)
                     .padding(.horizontal, 12)
+                    .shadow(color: .orange, radius: 5)
             }
             
             Button {
@@ -96,8 +117,12 @@ struct AuthView: View {
                 }
             } label: {
                 Text(isAuth ? "Зарегистрироваться" : "Войти")
+                    .foregroundColor(Color.white)
             }
+            .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)), Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+            .cornerRadius(10)
             .buttonStyle(.bordered)
+            
            
             
             
@@ -117,16 +142,24 @@ struct AuthView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Image("bg")
-            .resizable()
-            .ignoresSafeArea()
-            .blur(radius: isAuth ? 6 : 0))
+//        .background(Image("bg")
+//            .resizable()
+//            .ignoresSafeArea()
+//            .blur(radius: isAuth ? 6 : 0))
         .animation(Animation.easeInOut(duration: 0.4), value: isAuth)
         .fullScreenCover(isPresented: $isTabViewShow) {
             
             let mainTabBarViewModel = MainTabBarViewModel(user: AuthService.shared.currentUser!)
             
             MainTabBar(viewModel: mainTabBarViewModel)
+        }
+        .onTapGesture {
+            UIApplication.shared.endEditing()
+        }
+        .onReceive(self.keyboardPublisher) { isKeyboardShow in
+            withAnimation(.easeIn(duration: 0.3)) {
+                self.shouldShowLogo = !isKeyboardShow
+            }
         }
         
     }
@@ -135,5 +168,12 @@ struct AuthView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         AuthView()
+    }
+}
+
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

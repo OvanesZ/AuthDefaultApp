@@ -15,7 +15,6 @@ struct HeaderFriendCell: View {
     var body: some View {
         
         
-        ZStack {
             HStack {
                 
                 KFImage(viewModel.friend.userImage)
@@ -45,6 +44,5 @@ struct HeaderFriendCell: View {
                 }
             }
             .padding(.leading)
-        }
     }
 }
