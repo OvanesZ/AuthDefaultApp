@@ -62,21 +62,21 @@ final class FriendsViewModel: ObservableObject {
         }
     }
     
-    // MARK: -- (Добавление в друзья) Добавляю id друга в массив friendsID
-   
-    func loadNewFriendInCollection (_ friend: UserModel) {
-        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid)
-        
-        docRef.updateData([
-            "friendsID": FieldValue.arrayUnion([friend.id])
-        ]) { err in
-            if let err = err {
-                print("Возникла ошибка при добавлении id пользователя в коллекцию Friends: \(err)")
-            } else {
-                print("id пользователя добавлен в коллекцию Friends")
-            }
-        }
-    }
+//    // MARK: -- (Добавление в друзья) Добавляю id друга в массив friendsID
+//   
+//    func loadNewFriendInCollection (_ friend: UserModel) {
+//        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid)
+//        
+//        docRef.updateData([
+//            "friendsID": FieldValue.arrayUnion([friend.id])
+//        ]) { err in
+//            if let err = err {
+//                print("Возникла ошибка при добавлении id пользователя в коллекцию Friends: \(err)")
+//            } else {
+//                print("id пользователя добавлен в коллекцию Friends")
+//            }
+//        }
+//    }
     
     
     

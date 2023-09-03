@@ -68,7 +68,7 @@ struct FriendsView: View {
                             }) { friend in
                                 
                                 NavigationLink {
-                                    FriendHomeView(viewModel: FriendsViewModel(friend: friend))
+                                    FriendHomeView(viewModel: FriendHomeViewModel(friend: friend))
                                 } label: {
                                     FriendsCell(friend: friend)
                                 }
@@ -96,7 +96,7 @@ struct FriendsView: View {
                             ForEach(friendViewModel.allUsers) { friend in
                                 
                                 NavigationLink {
-                                    FriendHomeView(viewModel: FriendsViewModel(friend: friend))
+                                    FriendHomeView(viewModel: FriendHomeViewModel(friend: friend))
                                 } label: {
                                     FriendsCell(friend: friend)
                                 }

@@ -57,7 +57,6 @@ struct HomeView: View {
                     Image("bg_present")
                     .resizable()
                     .opacity(0.2)
-//                    .edgesIgnoringSafeArea(.all)
                     .aspectRatio(contentMode: .fill)
                 )
                 
