@@ -53,7 +53,7 @@ struct FriendPresentsMainView: View {
                     }
                 }
                 .sheet(isPresented: $isShowPresentCell) {
-                    
+                    FriendPresentView(currentPresent: present, viewModel: PresentModelViewModel(present: present), userViewModel: HomeViewModel(), friendHomeViewModel: friendHomeViewModel, profileViewModel: ProfileViewModel(profile: friendHomeViewModel.friend))
                 }
             }
     }

@@ -38,7 +38,7 @@ class PresentModelViewModel: ObservableObject {
     //MARK: -- Резерв подарка
     
     func reservingPresent(_ present: PresentModel, _ user: UserModel, _ ownerPresent: UserModel) {
-        let docRef = Firestore.firestore().collection("User").document(ownerPresent.email).collection("Wishlist").document(present.name ?? "")
+        let docRef = Firestore.firestore().collection("Users").document(ownerPresent.id).collection("Wishlist").document(present.name ?? "")
         
         docRef.updateData([
             "presentFromUser.email": user.email,
