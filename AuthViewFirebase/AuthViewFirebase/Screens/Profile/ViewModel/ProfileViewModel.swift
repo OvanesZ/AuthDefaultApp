@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class ProfileViewModel: ObservableObject {
     
@@ -17,6 +18,7 @@ class ProfileViewModel: ObservableObject {
     
     
     func setProfile() {
+        print(profile)
         DatabaseService.shared.setProfile(user: profile) { result in
             switch result {
             case .success(let user):

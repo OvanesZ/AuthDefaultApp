@@ -30,17 +30,13 @@ struct HeaderFriendCell: View {
                         .frame(height: 25)
                         .padding(.horizontal, 20)
                     
-                    Text("Возраст: 31")
+                    Text("\(viewModel.friend.dateOfBirth.formatted(.dateTime.day().month().year()))")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .frame(height: 25, alignment: .leading)
                         .padding(.horizontal, 20)
                     
-                    Text("12.06.1991")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 25)
-                        .padding(.horizontal, 20)
+                    
                 }
             }
             .padding(.leading)

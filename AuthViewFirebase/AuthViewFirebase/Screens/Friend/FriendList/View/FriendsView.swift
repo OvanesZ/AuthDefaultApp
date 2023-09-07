@@ -31,7 +31,7 @@ struct FriendsView: View {
     ).eraseToAnyPublisher()
     
     private var mockSubscribers: [UserModel] = [
-        UserModel(id: "1", email: "v@putin.ru", displayName: "Владимир Владимирович", phoneNumber: 0, address: "", userImageURLText: "https://mf.b37mrtl.ru/russian/images/2023.07/article/64bcf8f402e8bd0212037620.png")
+        UserModel(id: "1", email: "v@putin.ru", displayName: "Владимир Владимирович", phoneNumber: 0, address: "", userImageURLText: "https://mf.b37mrtl.ru/russian/images/2023.07/article/64bcf8f402e8bd0212037620.png", dateOfBirth: Date())
     ]
     
     

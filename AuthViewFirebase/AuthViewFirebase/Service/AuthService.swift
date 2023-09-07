@@ -24,7 +24,7 @@ class AuthService {
         auth.createUser(withEmail: email, password: password) { result, error in
             
             if let result = result {
-                let userModel = UserModel(id: result.user.uid, email: result.user.email ?? "", displayName: "", phoneNumber: 0, address: "")
+                let userModel = UserModel(id: result.user.uid, email: result.user.email ?? "", displayName: "", phoneNumber: 0, address: "", dateOfBirth: Date())
                 DatabaseService.shared.setProfile(user: userModel) { resultDB in
                     switch resultDB {
                     case .success(_):

@@ -16,7 +16,7 @@ struct PresentModel: Codable, Identifiable {
     var havePhoto: Bool = false
     var urlText = ""
     
-    var presentFromUser: UserModel = UserModel(id: "", email: "", displayName: "", phoneNumber: 0, address: "")
+    var presentFromUser: UserModel = UserModel(id: "", email: "", displayName: "", phoneNumber: 0, address: "", dateOfBirth: Date())
 
     var isReserved = false
     
