@@ -30,7 +30,7 @@ struct HeaderFriendCell: View {
                         .frame(height: 25)
                         .padding(.horizontal, 20)
                     
-                    Text("\(viewModel.friend.dateOfBirth.formatted(.dateTime.day().month().year()))")
+                    Text("\(viewModel.friend.dateOfBirth.formatted(.dateTime.day().month().year().locale(Locale(identifier: "ru_RU"))))")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .frame(height: 25, alignment: .leading)

@@ -23,7 +23,7 @@ struct MainTabBar: View {
                     }
                 }
             
-            FriendsView(friendViewModel: FriendsViewModel(friend: UserModel(id: "", email: "", displayName: "", phoneNumber: 0, address: "", dateOfBirth: Date())), userViewModel: HomeViewModel())
+            FriendsView(friendViewModel: FriendsViewModel(friend: UserModel(id: "", email: "", displayName: "", address: "", dateOfBirth: Date())), userViewModel: HomeViewModel())
                 .tabItem {
                     VStack {
                         Image(systemName: "person.3.sequence")
@@ -31,7 +31,7 @@ struct MainTabBar: View {
                     }
                 }
             
-            ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", email: "", displayName: "", phoneNumber: 0, address: "", dateOfBirth: Date())))
+            ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", email: "", displayName: "", address: "", dateOfBirth: Date())))
                 .tabItem {
                     VStack {
                         Image(systemName: "gearshape")

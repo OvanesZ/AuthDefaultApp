@@ -15,7 +15,7 @@ struct UserModel: Codable, Identifiable {
     var id: String
     var email: String
     var displayName: String
-    var phoneNumber: Int
+    var phoneNumber: Int?
     var address: String
     var userImageURLText = ""
     var userImage: URL? { URL(string: "\(userImageURLText)")}
