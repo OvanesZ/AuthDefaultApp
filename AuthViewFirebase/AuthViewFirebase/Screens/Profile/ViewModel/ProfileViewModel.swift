@@ -7,10 +7,13 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class ProfileViewModel: ObservableObject {
     
     @Published var profile: UserModel
+    @Published var image = UIImage(named: "person")!
+
     
     init(profile: UserModel) {
         self.profile = profile
@@ -18,8 +21,10 @@ class ProfileViewModel: ObservableObject {
     
     
     func setProfile() {
-        print(profile)
-        DatabaseService.shared.setProfile(user: profile) { result in
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.15) else { return }
+        
+        DatabaseService.shared.setProfile(user: profile, image: imageData) { result in
             switch result {
             case .success(let user):
                 print(user.displayName)

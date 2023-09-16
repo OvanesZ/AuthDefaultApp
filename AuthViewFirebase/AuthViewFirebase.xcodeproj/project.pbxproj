@@ -45,6 +45,7 @@
 		4EEF21FC2AA514E8001B736F /* FriendPresentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21FB2AA514E8001B736F /* FriendPresentView.swift */; };
 		4EEF22002AB61626001B736F /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21FF2AB61626001B736F /* PhotoPicker.swift */; };
 		4EEF22022AB649F5001B736F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF22012AB649F5001B736F /* ImagePicker.swift */; };
+		4EEF22042AB65515001B736F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF22032AB65515001B736F /* StorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		4EEF21FB2AA514E8001B736F /* FriendPresentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPresentView.swift; sourceTree = "<group>"; };
 		4EEF21FF2AB61626001B736F /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		4EEF22012AB649F5001B736F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		4EEF22032AB65515001B736F /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 				4ED38A082A9269CC007E30D1 /* DataBaseService.swift */,
 				4EEF21FF2AB61626001B736F /* PhotoPicker.swift */,
 				4EEF22012AB649F5001B736F /* ImagePicker.swift */,
+				4EEF22032AB65515001B736F /* StorageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				4ED389F82A924E48007E30D1 /* ProfileView.swift in Sources */,
 				4EEF22002AB61626001B736F /* PhotoPicker.swift in Sources */,
 				4ED38A052A926692007E30D1 /* MainTabBarViewModel.swift in Sources */,
+				4EEF22042AB65515001B736F /* StorageService.swift in Sources */,
 				4ED389C82A91574E007E30D1 /* AuthViewFirebaseApp.swift in Sources */,
 				4EEF21C02A9CFA8C001B736F /* PresentModel.swift in Sources */,
 				4EEF21C82A9CFF97001B736F /* HomeViewModel.swift in Sources */,

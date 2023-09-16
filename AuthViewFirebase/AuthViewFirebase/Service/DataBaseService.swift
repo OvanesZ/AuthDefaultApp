@@ -20,15 +20,32 @@ class DatabaseService {
     private init() { }
     
     
-    func setProfile(user: UserModel, completion: @escaping (Result<UserModel, Error>) -> Void) {
+    func setProfile(user: UserModel, image: Data, completion: @escaping (Result<UserModel, Error>) -> Void) {
         
-        usersRef.document(user.id).setData(user.representation) { error in
-            if let error = error {
+        StorageService.shared.upload(id: user.id, image: image) { result in
+            switch result {
+            case .success(let sizeInfo):
+                print(sizeInfo)
+                self.usersRef.document(user.id).setData(user.representation) { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(user))
+                    }
+                }
+                
+            case .failure(let error):
                 completion(.failure(error))
-            } else {
-                completion(.success(user))
             }
         }
+        
+//        usersRef.document(user.id).setData(user.representation) { error in
+//            if let error = error {
+//                completion(.failure(error))
+//            } else {
+//                completion(.success(user))
+//            }
+//        }
     }
     
     func getProfile(completion: @escaping (Result<UserModel, Error>) -> Void) {
