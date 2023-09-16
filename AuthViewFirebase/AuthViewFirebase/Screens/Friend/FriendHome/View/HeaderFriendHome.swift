@@ -12,15 +12,18 @@ struct HeaderFriendCell: View {
     
     @ObservedObject var viewModel: FriendHomeViewModel
     
+    
     var body: some View {
         
         
             HStack {
                 
-                KFImage(viewModel.friend.userImage)
+                Image(uiImage: viewModel.uiImage!)
                     .resizable()
+                    .scaledToFill()
                     .frame(width: 120, height: 120)
-                    .modifier(CircleShadow(shadowColor: .white, shadowRadius: 0))
+                    .clipShape(Circle())
+                
                 
                 VStack {
                     Text("Дата рождения:")
@@ -36,6 +39,9 @@ struct HeaderFriendCell: View {
                         .padding(.horizontal, 20)
                     
                 }
+            }
+            .onAppear {
+                viewModel.getImage()
             }
             .padding(.leading)
     }

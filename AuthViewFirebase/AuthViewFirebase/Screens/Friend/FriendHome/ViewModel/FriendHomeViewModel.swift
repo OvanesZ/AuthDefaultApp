@@ -16,6 +16,7 @@ class FriendHomeViewModel: ObservableObject {
     @Published var wishlist: [PresentModel] = []
     @Published var isFriendForRequestArr = false
     @Published var isFriendForFriendstArr = false
+    @Published var uiImage = UIImage(named: "person")
     
     init(friend: UserModel) {
         self.friend = friend
@@ -162,6 +163,19 @@ class FriendHomeViewModel: ObservableObject {
             }
         }
         
+    }
+    
+    func getImage() {
+        StorageService.shared.downloadUserImage(id: friend.id) { result in
+            switch result {
+            case .success(let data):
+                if let img = UIImage(data: data) {
+                    self.uiImage = img
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     

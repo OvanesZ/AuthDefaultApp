@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct FriendsCell: View {
     
     let friend: UserModel
+    @State var uiImage = UIImage(named: "person")
     
     init(friend: UserModel) {
         self.friend = friend
@@ -21,19 +21,30 @@ struct FriendsCell: View {
         
         HStack {
             
-            KFImage(friend.userImage)
+            Image(uiImage: uiImage!)
                 .resizable()
+                .scaledToFill()
                 .frame(width: 38, height: 38)
                 .clipShape(Circle())
+            
             
             
             Text(friend.email)
                 .padding(.leading, 3)
                 .lineLimit(2)
                 .bold()
-//                .foregroundColor(Color(#colorLiteral(red: 0.9649916291, green: 0.9558705688, blue: 0.871204555, alpha: 1)))
-            
-//            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.04370719939, green: 0.1099352911, blue: 0.1132253781, alpha: 1)), Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        }
+        .onAppear {
+            StorageService.shared.downloadUserImage(id: friend.id) { result in
+                switch result {
+                case .success(let data):
+                    if let img = UIImage(data: data) {
+                        self.uiImage = img
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
     
