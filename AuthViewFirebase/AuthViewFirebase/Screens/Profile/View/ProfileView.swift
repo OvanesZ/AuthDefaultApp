@@ -16,6 +16,9 @@ struct ProfileView: View {
     @State var isAuthViewPresented = false
     @State private var isShowAlert = false
     @State private var alertMessage = ""
+    @State private var showImagePickerLibrary = false
+    @State private var showImagePickerCamera = false
+    @State private var image = UIImage(named: "person")!
     
     @StateObject var viewModel: ProfileViewModel
     @StateObject private var viewModelPhotoPicker = PhotoPickerViewModel()
@@ -35,141 +38,151 @@ struct ProfileView: View {
             
             VStack {
                 
+                // MARK: - Photo Picker
+                
+//                if viewModelPhotoPicker.selectedImage == nil {
+//                    Image(systemName: "person.circle.fill")
+//                        .resizable()
+//                        .frame(width: 200, height: 200)
+//                        .scaledToFill()
+//                        .clipShape(Circle())
+//                        .toolbar {
+//                            ToolbarItem(placement: .navigationBarTrailing) {
+//                                Button {
+//                                    isQuitAlertPresented.toggle()
+//                                } label: {
+//                                    HStack {
+//                                        Text("Выйти")
+//                                        Image(systemName: "rectangle.portrait.and.arrow.right")
+//                                    }
+//                                    .font(.body.bold())
+//
+//                                }
+//                                .confirmationDialog("Покинуть аккаунт?", isPresented: $isQuitAlertPresented, titleVisibility: .visible) {
+//                                    Button {
+//                                        isAuthViewPresented.toggle()
+//                                    } label: {
+//                                        Text("Да")
+//                                    }
+//                                }
+//                                .fullScreenCover(isPresented: $isAuthViewPresented, onDismiss: nil) {
+//                                    AuthView()
+//                                }
+//
+//                            }
+//                        }
+//                        .overlay(alignment: .bottomTrailing) {
+//                            PhotosPicker(selection: $viewModelPhotoPicker.imageSelection, matching: .images) {
+//                                Image(systemName: "pencil.circle.fill")
+//                                    .symbolRenderingMode(.multicolor)
+//                                    .font(.system(size: 30))
+//                                    .foregroundColor(.accentColor)
+//                                    .padding(.trailing, 15)
+//                            }
+//                        }
+//                } else {
+//                    if let image = viewModelPhotoPicker.selectedImage {
+//                        Image(uiImage: image)
+//                            .resizable()
+//                            .scaledToFill()
+//                            .frame(width: 200, height: 200)
+//                            .clipShape(Circle())
+//                            .toolbar {
+//                                ToolbarItem(placement: .navigationBarTrailing) {
+//                                    Button {
+//                                        isQuitAlertPresented.toggle()
+//                                    } label: {
+//                                        HStack {
+//                                            Text("Выйти")
+//                                            Image(systemName: "rectangle.portrait.and.arrow.right")
+//                                        }
+//                                        .font(.body.bold())
+//
+//                                    }
+//                                    .confirmationDialog("Покинуть аккаунт?", isPresented: $isQuitAlertPresented, titleVisibility: .visible) {
+//                                        Button {
+//                                            isAuthViewPresented.toggle()
+//                                        } label: {
+//                                            Text("Да")
+//                                        }
+//                                    }
+//                                    .fullScreenCover(isPresented: $isAuthViewPresented, onDismiss: nil) {
+//                                        AuthView()
+//                                    }
+//
+//                                }
+//                            }
+//                            .overlay(alignment: .bottomTrailing) {
+//                                PhotosPicker(selection: $viewModelPhotoPicker.imageSelection, matching: .images) {
+//                                    Image(systemName: "pencil.circle.fill")
+//                                        .symbolRenderingMode(.multicolor)
+//                                        .font(.system(size: 30))
+//                                        .foregroundColor(.accentColor)
+//                                        .padding(.trailing, 15)
+//                                }
+//                            }
+//                    }
+//                }
                 
                 
-                if viewModelPhotoPicker.selectedImage == nil {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .frame(width: 200, height: 200)
-                        .scaledToFill()
-//                        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5058823824, green: 0.3372549117, blue: 0.06666667014, alpha: 1)), Color(#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1))]), startPoint: .top, endPoint: .bottom))
-                        .clipShape(Circle())
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button {
-                                    isQuitAlertPresented.toggle()
-                                } label: {
-                                    HStack {
-                                        Text("Выйти")
-                                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                // MARK: - Image Picker
+                
+                
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 200, height: 200)
+                                    .clipShape(Circle())
+                                    .onTapGesture {
+                                        isAvatarlertPresented.toggle()
                                     }
-                                    .font(.body.bold())
-                                    
-                                }
-                                .confirmationDialog("Покинуть аккаунт?", isPresented: $isQuitAlertPresented, titleVisibility: .visible) {
-                                    Button {
-                                        isAuthViewPresented.toggle()
-                                    } label: {
-                                        Text("Да")
-                                    }
-                                }
-                                .fullScreenCover(isPresented: $isAuthViewPresented, onDismiss: nil) {
-                                    AuthView()
-                                }
-                                
-                            }
-                        }
-                        .overlay(alignment: .bottomTrailing) {
-                            PhotosPicker(selection: $viewModelPhotoPicker.imageSelection, matching: .images) {
-                                Image(systemName: "pencil.circle.fill")
-                                    .symbolRenderingMode(.multicolor)
-                                    .font(.system(size: 30))
-                                    .foregroundColor(.accentColor)
-                                    .padding(.trailing, 15)
-                            }
-                        }
-                } else {
-                    if let image = viewModelPhotoPicker.selectedImage {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 200, height: 200)
-                            .clipShape(Circle())
-                            .toolbar {
-                                ToolbarItem(placement: .navigationBarTrailing) {
-                                    Button {
-                                        isQuitAlertPresented.toggle()
-                                    } label: {
-                                        HStack {
-                                            Text("Выйти")
-                                            Image(systemName: "rectangle.portrait.and.arrow.right")
-                                        }
-                                        .font(.body.bold())
-                                        
-                                    }
-                                    .confirmationDialog("Покинуть аккаунт?", isPresented: $isQuitAlertPresented, titleVisibility: .visible) {
+                                    .confirmationDialog("Откуда взять фотку", isPresented: $isAvatarlertPresented) {
                                         Button {
-                                            isAuthViewPresented.toggle()
+                                            showImagePickerLibrary.toggle()
+                
                                         } label: {
-                                            Text("Да")
+                                            Text("Галерея")
+                                        }
+                
+                                        Button {
+                                            showImagePickerCamera.toggle()
+                                            
+                                        } label: {
+                                            Text("Камера")
                                         }
                                     }
-                                    .fullScreenCover(isPresented: $isAuthViewPresented, onDismiss: nil) {
-                                        AuthView()
-                                    }
-                                    
-                                }
-                            }
-                            .overlay(alignment: .bottomTrailing) {
-                                PhotosPicker(selection: $viewModelPhotoPicker.imageSelection, matching: .images) {
-                                    Image(systemName: "pencil.circle.fill")
-                                        .symbolRenderingMode(.multicolor)
-                                        .font(.system(size: 30))
-                                        .foregroundColor(.accentColor)
-                                        .padding(.trailing, 15)
-                                }
-                            }
-                    }
-                }
+                                    .toolbar {
+                                        ToolbarItem(placement: .navigationBarTrailing) {
+                                            Button {
+                                                isQuitAlertPresented.toggle()
+                                            } label: {
+                                                HStack {
+                                                    Text("Выйти")
+                                                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                                                }
+                                                .font(.body.bold())
                 
-                //                Image(systemName: "person.badge.plus")
-                //                    .resizable()
-                //                    .frame(width: 140, height: 140)
-                //                    .padding(8)
-                //                    .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)), Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))]), startPoint: .top, endPoint: .bottom))
-                //                    .clipShape(Circle())
-                //                    .onTapGesture {
-                //                        isAvatarlertPresented.toggle()
-                //                    }
-                //                    .confirmationDialog("Откуда взять фотку", isPresented: $isAvatarlertPresented) {
-                //                        Button {
-                //                            print("Library")
-                //
-                //                        } label: {
-                //                            Text("Галерея")
-                //                        }
-                //
-                //                        Button {
-                //                            print("Camera")
-                //                        } label: {
-                //                            Text("Камера")
-                //                        }
-                //                    }
-                //                    .toolbar {
-                //                        ToolbarItem(placement: .navigationBarTrailing) {
-                //                            Button {
-                //                                isQuitAlertPresented.toggle()
-                //                            } label: {
-                //                                HStack {
-                //                                    Text("Выйти")
-                //                                    Image(systemName: "rectangle.portrait.and.arrow.right")
-                //                                }
-                //                                .font(.body.bold())
-                //
-                //                            }
-                //                            .confirmationDialog("Покинуть аккаунт?", isPresented: $isQuitAlertPresented, titleVisibility: .visible) {
-                //                                Button {
-                //                                    isAuthViewPresented.toggle()
-                //                                } label: {
-                //                                    Text("Да")
-                //                                }
-                //                            }
-                //                            .fullScreenCover(isPresented: $isAuthViewPresented, onDismiss: nil) {
-                //                                AuthView()
-                //                            }
-                //
-                //                        }
-                //                    }
+                                            }
+                                            .confirmationDialog("Покинуть аккаунт?", isPresented: $isQuitAlertPresented, titleVisibility: .visible) {
+                                                Button {
+                                                    isAuthViewPresented.toggle()
+                                                } label: {
+                                                    Text("Да")
+                                                }
+                                            }
+                                            .fullScreenCover(isPresented: $isAuthViewPresented, onDismiss: nil) {
+                                                AuthView()
+                                            }
+                
+                                        }
+                                    }
+                                    .sheet(isPresented: $showImagePickerLibrary) {
+                                        ImagePicker(sourceType: .photoLibrary, selectedImage: $image)
+                                    }
+                                    .sheet(isPresented: $showImagePickerCamera) {
+                                        ImagePicker(sourceType: .camera, selectedImage: $image)
+                                    }
+
                 
                 
                 
