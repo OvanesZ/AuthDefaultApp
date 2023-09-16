@@ -21,6 +21,7 @@ struct UserModel: Codable, Identifiable {
     var userImage: URL? { URL(string: "\(userImageURLText)")}
     var friendsID: [String] = [""]
     var dateOfBirth: Date
+    var requestToFriend: [String] = [""]
     
     var representation: [String: Any] {
         var repres = [String: Any]()
@@ -32,6 +33,7 @@ struct UserModel: Codable, Identifiable {
         repres["userImageURLText"] = self.userImageURLText
         repres["friendsID"] = self.friendsID
         repres["dateOfBirth"] = Timestamp(date: dateOfBirth)
+        repres["requestToFriend"] = self.requestToFriend
         
         return repres
     }

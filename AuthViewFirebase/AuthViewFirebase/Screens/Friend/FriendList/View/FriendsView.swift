@@ -52,6 +52,8 @@ struct FriendsView: View {
                             .tag(0)
                         Text("Подписчики")
                             .tag(1)
+                        Text("Запросы (\(friendViewModel.myRequest.count))")
+                            .tag(2)
                     }.padding([.leading, .trailing], 45).pickerStyle(SegmentedPickerStyle())
                     
                     
@@ -85,6 +87,7 @@ struct FriendsView: View {
                         }
                         .onAppear(perform: friendViewModel.fetchUsers)
                         .onAppear(perform: friendViewModel.getFriends)
+                        .onAppear(perform: friendViewModel.getRequest)
                         .listStyle(.inset)
                             
                         
@@ -104,6 +107,21 @@ struct FriendsView: View {
                         }
                         .listStyle(.inset)
                         .onAppear(perform: friendViewModel.getFriends)
+                        .onAppear(perform: friendViewModel.getRequest)
+                    }
+                    if(segmentedChoice == 2) {
+                        List {
+                            ForEach(friendViewModel.myRequest) { friend in
+                                
+                                NavigationLink {
+                                    FriendHomeView(viewModel: FriendHomeViewModel(friend: friend))
+                                } label: {
+                                    FriendsCell(friend: friend)
+                                }
+                            }
+                        }
+                        .listStyle(.inset)
+                        .onAppear(perform: friendViewModel.getRequest)
                     }
                 }
             }
@@ -111,6 +129,8 @@ struct FriendsView: View {
             
         }
         .searchable(text: $nameFriend, placement: .navigationBarDrawer(displayMode: .always), prompt: "Поиск друга").textInputAutocapitalization(.never)
+        .onAppear(perform: friendViewModel.getRequest)
+        
         
         
         

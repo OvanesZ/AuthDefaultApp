@@ -43,6 +43,8 @@
 		4EEF21F52AA3FF96001B736F /* HeaderFriendHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21F42AA3FF96001B736F /* HeaderFriendHome.swift */; };
 		4EEF21FA2AA403A5001B736F /* FriendPresentMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21F92AA403A5001B736F /* FriendPresentMainView.swift */; };
 		4EEF21FC2AA514E8001B736F /* FriendPresentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21FB2AA514E8001B736F /* FriendPresentView.swift */; };
+		4EEF22002AB61626001B736F /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21FF2AB61626001B736F /* PhotoPicker.swift */; };
+		4EEF22022AB649F5001B736F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF22012AB649F5001B736F /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		4EEF21F42AA3FF96001B736F /* HeaderFriendHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderFriendHome.swift; sourceTree = "<group>"; };
 		4EEF21F92AA403A5001B736F /* FriendPresentMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPresentMainView.swift; sourceTree = "<group>"; };
 		4EEF21FB2AA514E8001B736F /* FriendPresentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPresentView.swift; sourceTree = "<group>"; };
+		4EEF21FF2AB61626001B736F /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		4EEF22012AB649F5001B736F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,8 @@
 			children = (
 				4ED38A022A926008007E30D1 /* AuthService.swift */,
 				4ED38A082A9269CC007E30D1 /* DataBaseService.swift */,
+				4EEF21FF2AB61626001B736F /* PhotoPicker.swift */,
+				4EEF22012AB649F5001B736F /* ImagePicker.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -538,6 +544,7 @@
 				4EEF21F52AA3FF96001B736F /* HeaderFriendHome.swift in Sources */,
 				4ED389F22A924B1F007E30D1 /* MainTabBar.swift in Sources */,
 				4ED389F62A924D43007E30D1 /* FriendsView.swift in Sources */,
+				4EEF22022AB649F5001B736F /* ImagePicker.swift in Sources */,
 				4EEF21C62A9CFC90001B736F /* PresentCellView.swift in Sources */,
 				4EEF21F32AA3FF6A001B736F /* FriendHomeViewModel.swift in Sources */,
 				4EEF21E52A9E8AA7001B736F /* FriendHomeView.swift in Sources */,
@@ -545,6 +552,7 @@
 				4EEF21DD2A9E5B41001B736F /* CyrcleShadow.swift in Sources */,
 				4ED389CA2A91574E007E30D1 /* AuthView.swift in Sources */,
 				4ED389F82A924E48007E30D1 /* ProfileView.swift in Sources */,
+				4EEF22002AB61626001B736F /* PhotoPicker.swift in Sources */,
 				4ED38A052A926692007E30D1 /* MainTabBarViewModel.swift in Sources */,
 				4ED389C82A91574E007E30D1 /* AuthViewFirebaseApp.swift in Sources */,
 				4EEF21C02A9CFA8C001B736F /* PresentModel.swift in Sources */,
@@ -721,6 +729,8 @@
 				DEVELOPMENT_TEAM = 73NUYU5X4U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите доступ к камере";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Разрешите доступ к галерее";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -750,6 +760,8 @@
 				DEVELOPMENT_TEAM = 73NUYU5X4U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите доступ к камере";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Разрешите доступ к галерее";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

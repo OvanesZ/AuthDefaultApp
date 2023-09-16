@@ -47,9 +47,10 @@ class DatabaseService {
             guard let userImageURLText = data["userImageURLText"] as? String else { return }
             guard let friendsID = data["friendsID"] as? [String] else { return }
             guard let dateOfBirth = data["dateOfBirth"] as? Timestamp else { return }
-         
+            guard let requestToFriend = data["requestToFriend"] as? [String] else { return }
             
-            let user = UserModel(id: id, email: email, displayName: displayName, phoneNumber: phoneNumber, address: address, userImageURLText: userImageURLText, friendsID: friendsID, dateOfBirth: dateOfBirth.dateValue())
+            
+            let user = UserModel(id: id, email: email, displayName: displayName, phoneNumber: phoneNumber, address: address, userImageURLText: userImageURLText, friendsID: friendsID, dateOfBirth: dateOfBirth.dateValue(), requestToFriend: requestToFriend)
             
             completion(.success(user))
         }

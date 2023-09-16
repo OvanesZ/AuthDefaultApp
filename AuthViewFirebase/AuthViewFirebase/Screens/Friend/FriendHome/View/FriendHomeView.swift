@@ -10,6 +10,7 @@ import SwiftUI
 struct FriendHomeView: View {
     
     @ObservedObject var viewModel: FriendHomeViewModel
+    @State private var isButtonPressed = false
     
     var columns: [GridItem] = [
         GridItem(.fixed(150), spacing: 20),
@@ -18,22 +19,48 @@ struct FriendHomeView: View {
     
     var body: some View {
         
-            VStack {
-                
-                HeaderFriendCell(viewModel: viewModel)
-                
-                Divider()
-                    .padding([.leading, .trailing], 25)
-                
-                Button {
-                    viewModel.loadNewFriendInCollection(viewModel.friend)
-                } label: {
-                    Text("Подписаться")
-                }
-                .buttonStyle(.bordered)
-            }
+        VStack {
+            
+            HeaderFriendCell(viewModel: viewModel)
             
             Divider()
+                .padding([.leading, .trailing], 25)
+            
+            
+            
+            if viewModel.isFriendForFriendstArr {
+                Text("Вы подписаны")
+            } else {
+                Button {
+                    if viewModel.isFriendForRequestArr {
+                        isButtonPressed.toggle()
+                    } else {
+                        viewModel.loadNewFriendInCollection(viewModel.friend)
+                    }
+                } label: {
+                    Text(viewModel.isFriendForRequestArr ? "Ответить на запрос" : "Подписаться")
+                }
+                .buttonStyle(.bordered)
+                .confirmationDialog("Ваши действия", isPresented: $isButtonPressed) {
+                    Button {
+                        viewModel.answerToRequestAllow()
+                    } label: {
+                        Text("Разрешить")
+                    }
+                    
+                    Button {
+                        viewModel.answerToRequestReject()
+                    } label: {
+                        Text("Отклонить")
+                    }
+                }
+            }
+            
+            
+            
+            
+        }
+            
             
             ScrollView {
                 LazyVGrid (
@@ -56,5 +83,6 @@ struct FriendHomeView: View {
                     .aspectRatio(contentMode: .fill)
             )
             .navigationTitle(viewModel.friend.displayName)
+//            .onAppear(perform: viewModel.isFriendOrNo)
     }
 }

@@ -54,7 +54,8 @@ struct HomeView: View {
                     }
                 }
                 .background(
-                    Image("bg_present")
+//                    Image("bg_present")
+                    Image("iconWishlist_blue")
                     .resizable()
                     .opacity(0.2)
                     .aspectRatio(contentMode: .fill)

@@ -17,9 +17,11 @@ final class FriendsViewModel: ObservableObject {
     
     @Published var allUsers: [UserModel] = []
     @Published var myFriends: [UserModel] = []
+    @Published var myRequest: [UserModel] = []
     @Published var allFriendsUser: [UserModel] = []
     
     var myFriendsID: [String] = [" "]
+    var myRequestID: [String] = [" "]
     
     var currentUser = Auth.auth().currentUser
     let friend: UserModel
@@ -30,6 +32,7 @@ final class FriendsViewModel: ObservableObject {
         
         fetchUsers()
         getFriends()
+        getRequest()
     }
     
     
@@ -61,22 +64,6 @@ final class FriendsViewModel: ObservableObject {
             }
         }
     }
-    
-//    // MARK: -- (Добавление в друзья) Добавляю id друга в массив friendsID
-//   
-//    func loadNewFriendInCollection (_ friend: UserModel) {
-//        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid)
-//        
-//        docRef.updateData([
-//            "friendsID": FieldValue.arrayUnion([friend.id])
-//        ]) { err in
-//            if let err = err {
-//                print("Возникла ошибка при добавлении id пользователя в коллекцию Friends: \(err)")
-//            } else {
-//                print("id пользователя добавлен в коллекцию Friends")
-//            }
-//        }
-//    }
     
     
     
@@ -113,6 +100,109 @@ final class FriendsViewModel: ObservableObject {
                 
             }
         }
+    }
+    
+    // MARK: -- Прослушиваю
+
+    func getRequest() {
+        
+        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid)
+
+        
+        docRef.addSnapshotListener { snapshot, error in
+            guard let document = snapshot else {
+                print("Ошибка при получении id друзей \(error!)")
+                return
+            }
+
+            guard let data = document.data() else {
+                print("Документ пустой")
+                return
+            }
+
+            guard let id = data["requestToFriend"] as? [String] else { return }
+            self.myRequestID = id
+        }
+        
+        Firestore.firestore().collection("Users").whereField("id", in: myRequestID).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                self.myRequest = querySnapshot?.documents.compactMap {
+                    try? $0.data(as: UserModel.self)
+                } ?? []
+            }
+        }
+        
+    }
+    
+    func setFollowing() {
+        let docRefUser = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Following").document(friend.id)
+        
+        let docData: [String: Any] = [
+            "id": friend.id,
+            "status": false
+        ]
+        
+        docRefUser.setData(docData) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Done")
+            }
+        }
+        
+        
+        let docRefFriend = Firestore.firestore().collection("Users").document(friend.id).collection("Followers").document(AuthService.shared.currentUser!.uid)
+        
+        let docDataFriend: [String: Any] = [
+            "id": AuthService.shared.currentUser!.uid,
+            "status": false
+        ]
+        
+        docRefFriend.setData(docDataFriend) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Done")
+            }
+        }
+        
+        
+        
+    }
+    
+    func changeStatus() {
+        let docRefUser = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Following").document(friend.id)
+        
+        docRefUser.updateData([
+            "status": true
+        ]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Done")
+            }
+        }
+        
+        let docRefFriend = Firestore.firestore().collection("Users").document(friend.id).collection("Followers").document(AuthService.shared.currentUser!.uid)
+        
+        docRefFriend.updateData([
+            "status": true
+        ]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Done")
+            }
+        }
+    }
+    
+    
+    func fetchFollowers() {
+        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Followers")
+        
+        
         
         
     }

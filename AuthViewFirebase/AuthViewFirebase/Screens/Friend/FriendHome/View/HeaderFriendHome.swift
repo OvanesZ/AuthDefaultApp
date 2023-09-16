@@ -20,11 +20,10 @@ struct HeaderFriendCell: View {
                 KFImage(viewModel.friend.userImage)
                     .resizable()
                     .frame(width: 120, height: 120)
-                    .padding(.leading)
-                    .modifier(CircleShadow(shadowColor: .white, shadowRadius: 1))
+                    .modifier(CircleShadow(shadowColor: .white, shadowRadius: 0))
                 
                 VStack {
-                    Text(viewModel.friend.displayName)
+                    Text("Дата рождения:")
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
                         .frame(height: 25)
@@ -35,7 +34,6 @@ struct HeaderFriendCell: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 25, alignment: .leading)
                         .padding(.horizontal, 20)
-                    
                     
                 }
             }

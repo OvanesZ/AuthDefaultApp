@@ -11,7 +11,6 @@ struct MainTabBar: View {
     
     var viewModel: MainTabBarViewModel
     
-    
     var body: some View {
         
         TabView {
@@ -29,6 +28,7 @@ struct MainTabBar: View {
                         Image(systemName: "person.3.sequence")
                         Text("Друзья")
                     }
+                   
                 }
             
             ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", email: "", displayName: "", address: "", dateOfBirth: Date())))
