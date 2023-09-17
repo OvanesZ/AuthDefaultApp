@@ -185,7 +185,6 @@ struct ProfileView: View {
                 
                 
                 
-                
                 Form {
                     Section(header: Text("Настройки профиля")) {
                         
@@ -237,6 +236,7 @@ struct ProfileView: View {
         }
         .onAppear {
             self.viewModel.getProfile()
+            self.viewModel.getImage()
         }
         
         

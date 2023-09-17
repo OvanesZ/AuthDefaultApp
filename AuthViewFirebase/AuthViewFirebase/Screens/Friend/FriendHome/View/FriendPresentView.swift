@@ -96,7 +96,7 @@ struct FriendPresentView: View {
             HStack {
                 
                 if viewModel.isHiddenReservButton {
-                    Text("Подарит \(viewModel.present.presentFromUser.displayName)")
+                    Text("Подарит TODO user")
                         .font(.title2)
                         .bold()
                         .foregroundColor(.white)

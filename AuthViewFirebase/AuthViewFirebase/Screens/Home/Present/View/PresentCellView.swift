@@ -12,7 +12,9 @@ struct PresentCellView: View {
     let present: PresentModel
     @State var isShowPresentCell = false
     @GestureState private var isLongPressed = false
+    @StateObject var viewModel = PresentModelViewModel(present: PresentModel(name: "", urlText: "", presentFromUserID: ""))
     
+    // MARK: - init()
     init(present: PresentModel) {
         self.present = present
     }
@@ -31,7 +33,7 @@ struct PresentCellView: View {
                         } label: {
                             RoundedRectangle(cornerRadius: 30, style: .continuous)
                                 .overlay {
-                                    Image("present 1")
+                                    Image(uiImage: viewModel.uiImage)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         
@@ -40,9 +42,10 @@ struct PresentCellView: View {
                                 .frame(width: 130, height: 130)
                                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                                 .overlay(alignment: .bottomLeading) {
-                                    Text(present.name ?? "").foregroundColor(.white)
+                                    Text(present.name)
                                         .padding(.leading, 15)
                                         .padding(.bottom, 10)
+                                        .foregroundColor(.white)
                                 }
                         }
                     }
@@ -51,7 +54,20 @@ struct PresentCellView: View {
                     PresentModalView(currentPresent: present, presentModelViewModel: PresentModelViewModel(present: present))
                 }
             }
+            .onAppear {
+                StorageService.shared.downloadPresentImage(id: present.id) { result in
+                    switch result {
+                    case .success(let data):
+                        if let img = UIImage(data: data) {
+                            self.viewModel.uiImage = img
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
     }
+    
 }
 
 

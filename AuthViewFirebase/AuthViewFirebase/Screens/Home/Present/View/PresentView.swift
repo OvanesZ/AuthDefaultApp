@@ -21,21 +21,36 @@ struct PresentModalView: View {
     
     var body: some View {
         
+        HStack {
+            Spacer()
+            Text(presentModelViewModel.present.name)
+                .padding(.top, 40)
+                .font(.title2.bold())
+            Spacer()
+        }
+        
         VStack {
-            Rectangle()
-                .frame(minHeight: 250, idealHeight: 275, maxHeight: 300)
+            
+            RoundedRectangle(cornerRadius: 30, style: .continuous)
                 .overlay {
-                    Image("present 1")
+                    Image(uiImage: presentModelViewModel.uiImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                     
                 }
+                .opacity(50)
+                .frame(width: 350, height: 350)
+                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+            
+            
+            
+            
             
             HStack {
                 Text("Описание")
                     .font(.title2)
                     .bold()
-                    .foregroundColor(.white)
+                    .foregroundColor(.gray)
                     .padding(.leading, 15)
                     .padding(.top, 25)
                 Spacer()
@@ -47,8 +62,6 @@ struct PresentModalView: View {
             HStack {
                 Text(presentModelViewModel.present.presentDescription)
                     .frame(minHeight: 25, idealHeight: 25, maxHeight: 50)
-                
-                    .foregroundColor(.gray)
                     .padding(.leading, 15)
                     .padding(.trailing, 5)
                     .padding(.top, 5)
@@ -80,7 +93,7 @@ struct PresentModalView: View {
                         Text("Подарит")
                             .font(.title2)
                             .bold()
-                            .foregroundColor(.white)
+                            .foregroundColor(.gray)
                             .opacity(15)
                             .padding(.leading, 15)
                         
@@ -88,7 +101,7 @@ struct PresentModalView: View {
                         Text("Подарок свободен")
                             .font(.title2)
                             .bold()
-                            .foregroundColor(.white)
+                            .foregroundColor(.gray)
                             .opacity(15)
                             .padding(.leading, 15)
                     }
@@ -96,28 +109,23 @@ struct PresentModalView: View {
                 }
                 
                 HStack {
-                    if presentModelViewModel.isHiddenReservButton {
-                        
-                        KFImage(presentModelViewModel.present.presentFromUser.userImage)
-                            .resizable()
-                        //                                .padding(.leading, 15)
-                            .frame(width: 70, height: 70)
-                            .modifier(CircleShadow(shadowColor: .white, shadowRadius: 0))
-                        
-                        Text(presentModelViewModel.present.presentFromUser.displayName)
-                            .font(.title2)
-                        //                                .bold()
-                            .foregroundColor(.white)
-                            .opacity(15)
-                            .padding(.leading, 15)
-                    } else {
-                        
-                    }
+                    //                    if presentModelViewModel.isHiddenReservButton {
+                    //
+                    //                        KFImage(presentModelViewModel.present.presentFromUser.userImage)
+                    //                            .resizable()
+                    //                            .frame(width: 70, height: 70)
+                    //                            .modifier(CircleShadow(shadowColor: .white, shadowRadius: 0))
+                    //
+                    //                        Text(presentModelViewModel.present.presentFromUser.displayName)
+                    //                            .font(.title2)
+                    //                            .opacity(15)
+                    //                            .padding(.leading, 15)
+                    //                    } else {
+                    //
+                    //                    }
                     Spacer()
                 }
                 .padding(.leading, 15)
-                
-                
             }
             
             Divider()
@@ -126,14 +134,17 @@ struct PresentModalView: View {
             // MARK: -- Кнопки удалить
             
             Button(action: {
-                presentModelViewModel.removingPresentFromWishlist(currentPresent.name ?? "")
+                presentModelViewModel.removingPresentFromWishlist(currentPresent.name)
             }) {
                 Image(systemName: "trash")
                     .font(.largeTitle)
                     .foregroundColor(.red)
             }
+            .padding(.bottom, 15)
         }
-        
+        .onAppear {
+            presentModelViewModel.getPresentImage()
+        }
     }
 }
 

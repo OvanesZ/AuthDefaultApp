@@ -14,6 +14,8 @@ import FirebaseStorage
 class PresentModelViewModel: ObservableObject {
     
     let present: PresentModel
+    
+    @Published var uiImage = UIImage(named: "gray_present")!
     @Published var isHiddenReservButton: Bool
     
     init(present: PresentModel) {
@@ -25,11 +27,37 @@ class PresentModelViewModel: ObservableObject {
     
     //MARK: -- Добавляю новый подарок в коллекцию "Wishlist"
     
-    func loadNewPresentInCollection (_ present: PresentModel) {
-        do {
-            try Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Wishlist").document(present.name ?? "").setData(from: present)
-        } catch let error {
-            print(error.localizedDescription)
+//    func loadNewPresentInCollection (_ present: PresentModel) {
+//        do {
+//            try Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Wishlist").document(present.name ?? "").setData(from: present)
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
+//    }
+    
+    func setPresent(newPresent: PresentModel) {
+        guard let imageData = uiImage.jpegData(compressionQuality: 0.15) else { return }
+        
+        DatabaseService.shared.setPresent(present: newPresent, image: imageData) { result in
+            switch result {
+            case .success(let present):
+                print(present.name)
+            case .failure(let error):
+                print("Ошибка при отправке данных на сервер \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getPresentImage() {
+        StorageService.shared.downloadPresentImage(id: present.id) { result in
+            switch result {
+            case .success(let data):
+                if let img = UIImage(data: data) {
+                    self.uiImage = img
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -38,7 +66,7 @@ class PresentModelViewModel: ObservableObject {
     //MARK: -- Резерв подарка
     
     func reservingPresent(_ present: PresentModel, _ user: UserModel, _ ownerPresent: UserModel) {
-        let docRef = Firestore.firestore().collection("Users").document(ownerPresent.id).collection("Wishlist").document(present.name ?? "")
+        let docRef = Firestore.firestore().collection("Users").document(ownerPresent.id).collection("Wishlist").document(present.name)
         
         docRef.updateData([
             "presentFromUser.email": user.email,
@@ -92,7 +120,7 @@ class PresentModelViewModel: ObservableObject {
     
     func updatePresentUrlPhoto(_ urlString: String) {
         
-        let docRef = Firestore.firestore().collection("User").document(currentUser?.email ?? "").collection("Wishlist").document(present.name ?? "")
+        let docRef = Firestore.firestore().collection("User").document(currentUser?.email ?? "").collection("Wishlist").document(present.name)
         
         docRef.updateData([
             "presentImageURLText": urlString

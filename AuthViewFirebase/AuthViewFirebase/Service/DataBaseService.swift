@@ -17,6 +17,10 @@ class DatabaseService {
     private var usersRef: CollectionReference {
         return db.collection("Users")
     }
+    
+    private var presentRef: CollectionReference {
+        return db.collection("Wishlist")
+    }
     private init() { }
     
     
@@ -38,14 +42,6 @@ class DatabaseService {
                 completion(.failure(error))
             }
         }
-        
-//        usersRef.document(user.id).setData(user.representation) { error in
-//            if let error = error {
-//                completion(.failure(error))
-//            } else {
-//                completion(.success(user))
-//            }
-//        }
     }
     
     func getProfile(completion: @escaping (Result<UserModel, Error>) -> Void) {
@@ -70,6 +66,24 @@ class DatabaseService {
             let user = UserModel(id: id, email: email, displayName: displayName, phoneNumber: phoneNumber, address: address, userImageURLText: userImageURLText, friendsID: friendsID, dateOfBirth: dateOfBirth.dateValue(), requestToFriend: requestToFriend)
             
             completion(.success(user))
+        }
+    }
+    
+    func setPresent(present: PresentModel, image: Data, completion: @escaping (Result <PresentModel, Error>) -> ()) {
+        StorageService.shared.uploadPresentImage(id: present.id, image: image) { result in
+            switch result {
+            case .success(let sizeInfo):
+                print(sizeInfo)
+                self.usersRef.document(AuthService.shared.currentUser!.uid).collection("Wishlist").document(present.id).setData(present.representation) { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(present))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
     

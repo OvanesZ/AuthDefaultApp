@@ -45,4 +45,18 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
+    func getImage() {
+        StorageService.shared.downloadUserImage(id: profile.id) { result in
+            switch result {
+            case .success(let data):
+                if let img = UIImage(data: data) {
+                    self.image = img
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
 }

@@ -16,10 +16,11 @@ struct NewPresentView: View {
     @ObservedObject var viewModel: PresentModelViewModel
     @ObservedObject var userViewModel: HomeViewModel
     @Environment(\.dismiss) var dismiss
-    //    @GestureState private var dragOffset = CGSize.zero
     @State var isPhotoLibrary = false
     
-//    @StateObject var viewModelImage = ProfileModel()
+    @State private var isImageAlert = false
+    @State private var showImagePickerLibrary = false
+    @State private var showImagePickerCamera = false
     
     var body: some View {
         
@@ -30,10 +31,44 @@ struct NewPresentView: View {
         VStack {
             HStack {
                 Spacer()
-//                EditableRectanglePresentImage(viewModel: viewModelImage)
+                
+                RoundedRectangle(cornerRadius: 30, style: .continuous)
+                    .overlay {
+                        Image(uiImage: viewModel.uiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                        
+                    }
+                    .opacity(50)
+                    .frame(width: 350, height: 350)
+                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                    .onTapGesture {
+                        isImageAlert.toggle()
+                    }
+                    .confirmationDialog("Откуда взять фотку", isPresented: $isImageAlert) {
+                        Button {
+                            showImagePickerLibrary.toggle()
+                            
+                        } label: {
+                            Text("Галерея")
+                        }
+                        
+                        Button {
+                            showImagePickerCamera.toggle()
+                            
+                        } label: {
+                            Text("Камера")
+                        }
+                    }
                 Spacer()
             }
             .padding(.top, 25)
+            .sheet(isPresented: $showImagePickerLibrary) {
+                ImagePicker(sourceType: .photoLibrary, selectedImage: $viewModel.uiImage)
+            }
+            .sheet(isPresented: $showImagePickerCamera) {
+                ImagePicker(sourceType: .camera, selectedImage: $viewModel.uiImage)
+            }
             
             
             HStack {
@@ -96,9 +131,11 @@ struct NewPresentView: View {
                 Spacer()
                 
                 Button(action: {
-                    let present = PresentModel(name: presentName, urlText: presentUrlForMarket, presentDescription: presentDescription)
+//                    let present = PresentModel(name: presentName, urlText: presentUrlForMarket, presentDescription: presentDescription)
+                    let newPresent = PresentModel(name: presentName, urlText: presentUrlForMarket, presentFromUserID: "", presentDescription: presentDescription)
 
-                    viewModel.loadNewPresentInCollection(present)
+//                    viewModel.loadNewPresentInCollection(present)
+                    viewModel.setPresent(newPresent: newPresent)
                     dismiss()
                 }) {
                     HStack {

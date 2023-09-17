@@ -30,12 +30,6 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 
-//                GeometryReader { geometry in
-//                    Image("bg_present")
-//                        .resizable()
-//                        .edgesIgnoringSafeArea(.all)
-//                        .aspectRatio(contentMode: .fill)
-//                }
                 
                 // MARK: -- LazyVGrid
                 
@@ -54,7 +48,6 @@ struct HomeView: View {
                     }
                 }
                 .background(
-//                    Image("bg_present")
                     Image("iconWishlist_blue")
                     .resizable()
                     .opacity(0.2)
@@ -72,10 +65,8 @@ struct HomeView: View {
                 .padding(.leading, 250)
                 .padding(.top, 420)
                 .sheet(isPresented: $isShowingNewPresentView) {
-                    NewPresentView(viewModel: PresentModelViewModel(present: PresentModel()), userViewModel: HomeViewModel())
+                    NewPresentView(viewModel: PresentModelViewModel(present: PresentModel(id: "", name: "", urlText: "", presentFromUserID: "")), userViewModel: HomeViewModel())
                 }
-//                .preferredColorScheme(.dark)
-//                .toolbarColorScheme(.dark, for: .tabBar)
                 .navigationTitle("Мои пожелания \(Auth.auth().currentUser?.email ?? "")")
                 
             }
