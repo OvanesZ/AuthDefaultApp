@@ -15,7 +15,7 @@ class PresentModelViewModel: ObservableObject {
     
     let present: PresentModel
     
-    @Published var uiImage = UIImage(named: "gray_present")!
+    @Published var uiImage = UIImage(named: "logo_wishlist")!
     @Published var isHiddenReservButton: Bool
     
     init(present: PresentModel) {
@@ -36,7 +36,7 @@ class PresentModelViewModel: ObservableObject {
 //    }
     
     func setPresent(newPresent: PresentModel) {
-        guard let imageData = uiImage.jpegData(compressionQuality: 0.15) else { return }
+        guard let imageData = uiImage.jpegData(compressionQuality: 0.75) else { return }
         
         DatabaseService.shared.setPresent(present: newPresent, image: imageData) { result in
             switch result {

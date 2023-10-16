@@ -28,15 +28,17 @@ struct AuthView: View {
     
     var body: some View {
         
-       
+        
         
         VStack {
             
+            
+            
             if shouldShowLogo {
-                Image("bg_present")
+                Image("logo_wishlist")
                     .resizable()
-                    .frame(width: 240, height: 240)
-                    .clipped()
+                    .frame(width: 220, height: 220)
+                    .clipShape(Circle())
                     .blur(radius: isAuth ? 6 : 0)
                     .padding(.top, -95)
             }
@@ -48,7 +50,7 @@ struct AuthView: View {
                 .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)), Color(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing))
                 .cornerRadius(20)
             
-            TextField("Логин", text: $login)
+            TextField("Email", text: $login)
                 .textFieldStyle(.roundedBorder)
                 .cornerRadius(12)
                 .padding(8)

@@ -45,7 +45,9 @@ struct PresentCellView: View {
                                     Text(present.name)
                                         .padding(.leading, 15)
                                         .padding(.bottom, 10)
+                                        .padding(.top, 10)
                                         .foregroundColor(.white)
+                                        .font(.callout.bold())
                                 }
                         }
                     }

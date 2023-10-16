@@ -24,7 +24,7 @@ struct FriendsCell: View {
             Image(uiImage: uiImage!)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 38, height: 38)
+                .frame(width: 60, height: 60)
                 .clipShape(Circle())
             
             

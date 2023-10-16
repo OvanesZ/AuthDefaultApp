@@ -46,6 +46,9 @@
 		4EEF22002AB61626001B736F /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF21FF2AB61626001B736F /* PhotoPicker.swift */; };
 		4EEF22022AB649F5001B736F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF22012AB649F5001B736F /* ImagePicker.swift */; };
 		4EEF22042AB65515001B736F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF22032AB65515001B736F /* StorageService.swift */; };
+		4EEF22062AB8D213001B736F /* GentiumBookPlus-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EEF22052AB8D213001B736F /* GentiumBookPlus-Bold.ttf */; };
+		4EEF22092AB8D34F001B736F /* Gloock-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EEF22082AB8D34F001B736F /* Gloock-Regular.ttf */; };
+		4EEF220B2AB8D424001B736F /* Volja.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EEF220A2AB8D424001B736F /* Volja.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +106,10 @@
 		4EEF21FF2AB61626001B736F /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		4EEF22012AB649F5001B736F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4EEF22032AB65515001B736F /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		4EEF22052AB8D213001B736F /* GentiumBookPlus-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GentiumBookPlus-Bold.ttf"; sourceTree = "<group>"; };
+		4EEF22082AB8D34F001B736F /* Gloock-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gloock-Regular.ttf"; sourceTree = "<group>"; };
+		4EEF220A2AB8D424001B736F /* Volja.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Volja.otf; sourceTree = "<group>"; };
+		4EEF220C2AB8D4C9001B736F /* GochiHand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GochiHand-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +166,7 @@
 		4ED389C62A91574E007E30D1 /* AuthViewFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				4EEF22072AB8D21B001B736F /* Fonts */,
 				4ED389CB2A91574F007E30D1 /* Assets.xcassets */,
 				4ED389C72A91574E007E30D1 /* AuthViewFirebaseApp.swift */,
 				4ED389F92A925AAD007E30D1 /* GoogleService-Info.plist */,
@@ -402,6 +410,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4EEF22072AB8D21B001B736F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4EEF220A2AB8D424001B736F /* Volja.otf */,
+				4EEF22052AB8D213001B736F /* GentiumBookPlus-Bold.ttf */,
+				4EEF22082AB8D34F001B736F /* Gloock-Regular.ttf */,
+				4EEF220C2AB8D4C9001B736F /* GochiHand-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -519,6 +538,9 @@
 			files = (
 				4ED389FA2A925AAD007E30D1 /* GoogleService-Info.plist in Resources */,
 				4ED389CF2A91574F007E30D1 /* Preview Assets.xcassets in Resources */,
+				4EEF220B2AB8D424001B736F /* Volja.otf in Resources */,
+				4EEF22092AB8D34F001B736F /* Gloock-Regular.ttf in Resources */,
+				4EEF22062AB8D213001B736F /* GentiumBookPlus-Bold.ttf in Resources */,
 				4ED389CC2A91574F007E30D1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

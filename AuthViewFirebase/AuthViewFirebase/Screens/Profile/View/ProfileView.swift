@@ -163,7 +163,7 @@ struct ProfileView: View {
                                 .font(.body.bold())
                                 
                             }
-                            .confirmationDialog("Покинуть аккаунт?", isPresented: $isQuitAlertPresented, titleVisibility: .visible) {
+                            .confirmationDialog("Выйти из аккаунта?", isPresented: $isQuitAlertPresented, titleVisibility: .visible) {
                                 Button {
                                     isAuthViewPresented.toggle()
                                 } label: {
