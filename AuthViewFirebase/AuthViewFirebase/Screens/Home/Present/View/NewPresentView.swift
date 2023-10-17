@@ -133,20 +133,17 @@ struct NewPresentView: View {
                     Spacer()
                     
                     Button(action: {
-                        //                    let present = PresentModel(name: presentName, urlText: presentUrlForMarket, presentDescription: presentDescription)
                         let newPresent = PresentModel(name: presentName, urlText: presentUrlForMarket, presentFromUserID: "", presentDescription: presentDescription)
-                        
-                        //                    viewModel.loadNewPresentInCollection(present)
                         viewModel.setPresent(newPresent: newPresent)
                         dismiss()
                     }) {
-                        HStack {
-                            Text("Создать")
-                                .padding(.init(top: 5, leading: 15, bottom: 5, trailing: 15))
-                                .foregroundColor(.white)
-                        }
-                        .background(Color.blue)
-                        .cornerRadius(10)
+                        Text("Создать")
+//                            .frame(width: 50, height: 25)
+                            .padding(.init(top: 8, leading: 15, bottom: 8, trailing: 15))
+                            .font(.title3.bold())
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(10)
                     }
                     .padding(.top, 20)
                 }
