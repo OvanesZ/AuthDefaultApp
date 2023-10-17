@@ -48,10 +48,12 @@ struct HomeView: View {
                     }
                 }
                 .background(
-                    Image("iconWishlist_blue")
+                    Image("bglogo_wishlist")
                     .resizable()
-                    .opacity(0.2)
+                    .scaledToFit()
+                    .opacity(0.4)
                     .aspectRatio(contentMode: .fill)
+                    .padding()
                 )
                 
                 
@@ -61,7 +63,7 @@ struct HomeView: View {
                     Image(systemName: "plus.circle.fill").foregroundColor(.blue)
                 }
                 .font(.system(size: 70))
-                .opacity(0.8)
+                .opacity(0.95)
                 .padding(.leading, 250)
                 .padding(.top, 420)
                 .sheet(isPresented: $isShowingNewPresentView) {

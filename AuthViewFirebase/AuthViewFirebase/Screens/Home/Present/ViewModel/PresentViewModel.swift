@@ -180,8 +180,8 @@ class PresentModelViewModel: ObservableObject {
     
     // MARK: -- Удаляю подарок из коллекции "Wishlist"
     
-    func removingPresentFromWishlist(_ namePresent: String) {
-        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Wishlist").document(namePresent)
+    func removingPresentFromWishlist(_ idPresent: String) {
+        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Wishlist").document(idPresent)
         
         docRef.delete() { error in
             if let error = error {

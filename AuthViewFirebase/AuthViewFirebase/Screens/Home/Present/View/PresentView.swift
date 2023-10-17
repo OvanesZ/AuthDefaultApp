@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct PresentModalView: View {
     
@@ -134,7 +133,7 @@ struct PresentModalView: View {
             // MARK: -- Кнопки удалить
             
             Button(action: {
-                presentModelViewModel.removingPresentFromWishlist(currentPresent.name)
+                presentModelViewModel.removingPresentFromWishlist(currentPresent.id)
             }) {
                 Image(systemName: "trash")
                     .font(.largeTitle)
