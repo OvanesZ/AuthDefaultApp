@@ -69,14 +69,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4ED389C42A91574E007E30D1 /* AuthViewFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthViewFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ED389C42A91574E007E30D1 /* Wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ED389C72A91574E007E30D1 /* AuthViewFirebaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewFirebaseApp.swift; sourceTree = "<group>"; };
 		4ED389C92A91574E007E30D1 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		4ED389CB2A91574F007E30D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ED389CE2A91574F007E30D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4ED389D42A91574F007E30D1 /* AuthViewFirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthViewFirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ED389D42A91574F007E30D1 /* WishlistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishlistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ED389D82A91574F007E30D1 /* AuthViewFirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewFirebaseTests.swift; sourceTree = "<group>"; };
-		4ED389DE2A915750007E30D1 /* AuthViewFirebaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthViewFirebaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ED389DE2A915750007E30D1 /* WishlistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishlistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ED389E22A915750007E30D1 /* AuthViewFirebaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewFirebaseUITests.swift; sourceTree = "<group>"; };
 		4ED389E42A915750007E30D1 /* AuthViewFirebaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewFirebaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4ED389F12A924B1F007E30D1 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
@@ -156,9 +156,9 @@
 		4ED389C52A91574E007E30D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4ED389C42A91574E007E30D1 /* AuthViewFirebase.app */,
-				4ED389D42A91574F007E30D1 /* AuthViewFirebaseTests.xctest */,
-				4ED389DE2A915750007E30D1 /* AuthViewFirebaseUITests.xctest */,
+				4ED389C42A91574E007E30D1 /* Wishlist.app */,
+				4ED389D42A91574F007E30D1 /* WishlistTests.xctest */,
+				4ED389DE2A915750007E30D1 /* WishlistUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -424,9 +424,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4ED389C32A91574E007E30D1 /* AuthViewFirebase */ = {
+		4ED389C32A91574E007E30D1 /* Wishlist */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4ED389E82A915750007E30D1 /* Build configuration list for PBXNativeTarget "AuthViewFirebase" */;
+			buildConfigurationList = 4ED389E82A915750007E30D1 /* Build configuration list for PBXNativeTarget "Wishlist" */;
 			buildPhases = (
 				4ED389C02A91574E007E30D1 /* Sources */,
 				4ED389C12A91574E007E30D1 /* Frameworks */,
@@ -436,7 +436,7 @@
 			);
 			dependencies = (
 			);
-			name = AuthViewFirebase;
+			name = Wishlist;
 			packageProductDependencies = (
 				4ED389FC2A925D9B007E30D1 /* FirebaseAuth */,
 				4ED389FE2A925D9B007E30D1 /* FirebaseFirestore */,
@@ -445,12 +445,12 @@
 				4EEF21CE2A9D05AD001B736F /* Kingfisher */,
 			);
 			productName = AuthViewFirebase;
-			productReference = 4ED389C42A91574E007E30D1 /* AuthViewFirebase.app */;
+			productReference = 4ED389C42A91574E007E30D1 /* Wishlist.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4ED389D32A91574F007E30D1 /* AuthViewFirebaseTests */ = {
+		4ED389D32A91574F007E30D1 /* WishlistTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4ED389EB2A915750007E30D1 /* Build configuration list for PBXNativeTarget "AuthViewFirebaseTests" */;
+			buildConfigurationList = 4ED389EB2A915750007E30D1 /* Build configuration list for PBXNativeTarget "WishlistTests" */;
 			buildPhases = (
 				4ED389D02A91574F007E30D1 /* Sources */,
 				4ED389D12A91574F007E30D1 /* Frameworks */,
@@ -461,14 +461,14 @@
 			dependencies = (
 				4ED389D62A91574F007E30D1 /* PBXTargetDependency */,
 			);
-			name = AuthViewFirebaseTests;
+			name = WishlistTests;
 			productName = AuthViewFirebaseTests;
-			productReference = 4ED389D42A91574F007E30D1 /* AuthViewFirebaseTests.xctest */;
+			productReference = 4ED389D42A91574F007E30D1 /* WishlistTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4ED389DD2A915750007E30D1 /* AuthViewFirebaseUITests */ = {
+		4ED389DD2A915750007E30D1 /* WishlistUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4ED389EE2A915750007E30D1 /* Build configuration list for PBXNativeTarget "AuthViewFirebaseUITests" */;
+			buildConfigurationList = 4ED389EE2A915750007E30D1 /* Build configuration list for PBXNativeTarget "WishlistUITests" */;
 			buildPhases = (
 				4ED389DA2A915750007E30D1 /* Sources */,
 				4ED389DB2A915750007E30D1 /* Frameworks */,
@@ -479,9 +479,9 @@
 			dependencies = (
 				4ED389E02A915750007E30D1 /* PBXTargetDependency */,
 			);
-			name = AuthViewFirebaseUITests;
+			name = WishlistUITests;
 			productName = AuthViewFirebaseUITests;
-			productReference = 4ED389DE2A915750007E30D1 /* AuthViewFirebaseUITests.xctest */;
+			productReference = 4ED389DE2A915750007E30D1 /* WishlistUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -507,7 +507,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4ED389BF2A91574E007E30D1 /* Build configuration list for PBXProject "AuthViewFirebase" */;
+			buildConfigurationList = 4ED389BF2A91574E007E30D1 /* Build configuration list for PBXProject "Wishlist" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -524,9 +524,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4ED389C32A91574E007E30D1 /* AuthViewFirebase */,
-				4ED389D32A91574F007E30D1 /* AuthViewFirebaseTests */,
-				4ED389DD2A915750007E30D1 /* AuthViewFirebaseUITests */,
+				4ED389C32A91574E007E30D1 /* Wishlist */,
+				4ED389D32A91574F007E30D1 /* WishlistTests */,
+				4ED389DD2A915750007E30D1 /* WishlistUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -619,12 +619,12 @@
 /* Begin PBXTargetDependency section */
 		4ED389D62A91574F007E30D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4ED389C32A91574E007E30D1 /* AuthViewFirebase */;
+			target = 4ED389C32A91574E007E30D1 /* Wishlist */;
 			targetProxy = 4ED389D52A91574F007E30D1 /* PBXContainerItemProxy */;
 		};
 		4ED389E02A915750007E30D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4ED389C32A91574E007E30D1 /* AuthViewFirebase */;
+			target = 4ED389C32A91574E007E30D1 /* Wishlist */;
 			targetProxy = 4ED389DF2A915750007E30D1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -822,7 +822,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuthViewFirebase.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AuthViewFirebase";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wishlist.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Wishlist";
 			};
 			name = Debug;
 		};
@@ -842,7 +842,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuthViewFirebase.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AuthViewFirebase";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wishlist.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Wishlist";
 			};
 			name = Release;
 		};
@@ -885,7 +885,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4ED389BF2A91574E007E30D1 /* Build configuration list for PBXProject "AuthViewFirebase" */ = {
+		4ED389BF2A91574E007E30D1 /* Build configuration list for PBXProject "Wishlist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4ED389E62A915750007E30D1 /* Debug */,
@@ -894,7 +894,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4ED389E82A915750007E30D1 /* Build configuration list for PBXNativeTarget "AuthViewFirebase" */ = {
+		4ED389E82A915750007E30D1 /* Build configuration list for PBXNativeTarget "Wishlist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4ED389E92A915750007E30D1 /* Debug */,
@@ -903,7 +903,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4ED389EB2A915750007E30D1 /* Build configuration list for PBXNativeTarget "AuthViewFirebaseTests" */ = {
+		4ED389EB2A915750007E30D1 /* Build configuration list for PBXNativeTarget "WishlistTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4ED389EC2A915750007E30D1 /* Debug */,
@@ -912,7 +912,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4ED389EE2A915750007E30D1 /* Build configuration list for PBXNativeTarget "AuthViewFirebaseUITests" */ = {
+		4ED389EE2A915750007E30D1 /* Build configuration list for PBXNativeTarget "WishlistUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4ED389EF2A915750007E30D1 /* Debug */,
