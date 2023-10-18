@@ -10,12 +10,14 @@ import SwiftUI
 struct FriendHomeView: View {
     
     @ObservedObject var viewModel: FriendHomeViewModel
+    @ObservedObject var presentModelViewModel: PresentModelViewModel
     @State private var isButtonPressed = false
     
     var columns: [GridItem] = [
         GridItem(.fixed(150), spacing: 20),
         GridItem(.fixed(150), spacing: 20)
     ]
+    
     
     var body: some View {
         
@@ -76,13 +78,10 @@ struct FriendHomeView: View {
                     }
                 }
             }
-            .background(
-                Image("bg_present")
-                    .resizable()
-                    .opacity(0.2)
-                    .aspectRatio(contentMode: .fill)
-            )
             .navigationTitle(viewModel.friend.displayName)
 //            .onAppear(perform: viewModel.isFriendOrNo)
+            .onAppear {
+                presentModelViewModel.getPresentImage()
+            }
     }
 }

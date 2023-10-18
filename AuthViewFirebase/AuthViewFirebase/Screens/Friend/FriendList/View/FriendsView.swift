@@ -30,10 +30,6 @@ struct FriendsView: View {
             .map { notification in false }
     ).eraseToAnyPublisher()
     
-    private var mockSubscribers: [UserModel] = [
-        UserModel(id: "1", email: "v@putin.ru", displayName: "Владимир Владимирович", phoneNumber: 0, address: "", userImageURLText: "https://mf.b37mrtl.ru/russian/images/2023.07/article/64bcf8f402e8bd0212037620.png", dateOfBirth: Date())
-    ]
-    
     
    
     
@@ -70,7 +66,7 @@ struct FriendsView: View {
                             }) { friend in
                                 
                                 NavigationLink {
-                                    FriendHomeView(viewModel: FriendHomeViewModel(friend: friend))
+                                    FriendHomeView(viewModel: FriendHomeViewModel(friend: friend), presentModelViewModel: PresentModelViewModel(present: PresentModel(id: "", name: "", urlText: "", presentFromUserID: "", isReserved: false, presentDescription: "")))
                                 } label: {
                                     FriendsCell(friend: friend)
                                 }
@@ -99,7 +95,7 @@ struct FriendsView: View {
                             ForEach(friendViewModel.allUsers) { friend in
                                 
                                 NavigationLink {
-                                    FriendHomeView(viewModel: FriendHomeViewModel(friend: friend))
+                                    FriendHomeView(viewModel: FriendHomeViewModel(friend: friend), presentModelViewModel: PresentModelViewModel(present: PresentModel(name: "", urlText: "", presentFromUserID: "")))
                                 } label: {
                                     FriendsCell(friend: friend)
                                 }
@@ -114,7 +110,7 @@ struct FriendsView: View {
                             ForEach(friendViewModel.myRequest) { friend in
                                 
                                 NavigationLink {
-                                    FriendHomeView(viewModel: FriendHomeViewModel(friend: friend))
+                                    FriendHomeView(viewModel: FriendHomeViewModel(friend: friend), presentModelViewModel: PresentModelViewModel(present: PresentModel(name: "", urlText: "", presentFromUserID: "")))
                                 } label: {
                                     FriendsCell(friend: friend)
                                 }

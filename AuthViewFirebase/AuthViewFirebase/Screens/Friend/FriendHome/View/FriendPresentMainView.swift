@@ -15,6 +15,8 @@ struct FriendPresentsMainView: View {
     let present: PresentModel
     @State var isShowPresentCell = false
     @ObservedObject var friendHomeViewModel: FriendHomeViewModel
+    @StateObject var viewModel = PresentModelViewModel(present: PresentModel(name: "", urlText: "", presentFromUserID: ""))
+    
     
     init(present: PresentModel, friendHomeViewModel: FriendHomeViewModel) {
         self.present = present
@@ -37,7 +39,7 @@ struct FriendPresentsMainView: View {
                             } label: {
                                 RoundedRectangle(cornerRadius: 30, style: .continuous)
                                     .overlay {
-                                        Image("present 1")
+                                        Image(uiImage: viewModel.uiImage)
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                         
@@ -62,6 +64,18 @@ struct FriendPresentsMainView: View {
             Text(present.name)
                 .font(.callout.bold())
                 .padding(.top, 3)
+        }
+        .onAppear {
+            StorageService.shared.downloadPresentImage(id: present.id) { result in
+                switch result {
+                case .success(let data):
+                    if let img = UIImage(data: data) {
+                        self.viewModel.uiImage = img
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }
