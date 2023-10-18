@@ -154,7 +154,7 @@ class PresentModelViewModel: ObservableObject {
         }
         
         uploadRef.downloadURL { (url, error) in
-            guard let downloadURL = url else {
+            guard url != nil else {
                 // Uh-oh, an error occurred!
                 return
             }

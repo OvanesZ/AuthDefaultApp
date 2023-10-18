@@ -200,7 +200,7 @@ final class FriendsViewModel: ObservableObject {
     
     
     func fetchFollowers() {
-        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Followers")
+//        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Followers")
         
         
         
