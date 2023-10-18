@@ -66,7 +66,7 @@ class PresentModelViewModel: ObservableObject {
     //MARK: -- Резерв подарка
     
     func reservingPresent(_ present: PresentModel, _ user: UserModel, _ ownerPresent: UserModel) {
-        let docRef = Firestore.firestore().collection("Users").document(ownerPresent.id).collection("Wishlist").document(present.name)
+        let docRef = Firestore.firestore().collection("Users").document(ownerPresent.id).collection("Wishlist").document(present.id)
         
         docRef.updateData([
             "presentFromUser.email": user.email,
@@ -78,6 +78,20 @@ class PresentModelViewModel: ObservableObject {
                 print("Ошибка при обновлении документа \(error)")
             } else {
                 print("Документ успешно обновлены")
+            }
+        }
+    }
+    
+    func reservingPresentForUserID(_ present: PresentModel, _ friendID: String) {
+        let docRef = Firestore.firestore().collection("Users").document(friendID).collection("Wishlist").document(present.id)
+        
+        docRef.updateData([
+            "isReserved": true
+        ]) { error in
+            if let error = error {
+                print("Ошибка при обновлении документа \(error)")
+            } else {
+                print("Документ обновлен успешно")
             }
         }
     }

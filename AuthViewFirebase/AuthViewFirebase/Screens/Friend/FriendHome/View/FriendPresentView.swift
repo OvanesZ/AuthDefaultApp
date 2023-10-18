@@ -151,11 +151,13 @@ struct FriendPresentView: View {
     
     let currentPresent: PresentModel
     @ObservedObject var presentModelViewModel: PresentModelViewModel
+    @ObservedObject var friendViewModel: FriendHomeViewModel
     let nameTextUrl: String = "[Ссылка на подарок]"
     
-    init(currentPresent: PresentModel, presentModelViewModel: PresentModelViewModel) {
+    init(currentPresent: PresentModel, presentModelViewModel: PresentModelViewModel, friendViewModel: FriendHomeViewModel) {
         self.currentPresent = currentPresent
         self.presentModelViewModel = presentModelViewModel
+        self.friendViewModel = friendViewModel
     }
     
     var body: some View {
@@ -277,7 +279,7 @@ struct FriendPresentView: View {
                     .padding(.bottom, 45)
             } else {
                 Button(action: {
-                    //TODO reserving present
+                    presentModelViewModel.reservingPresentForUserID(currentPresent, friendViewModel.friend.id)
                 }) {
                     Text("Выбрать подарок")
                         .padding(.init(top: 8, leading: 15, bottom: 8, trailing: 15))

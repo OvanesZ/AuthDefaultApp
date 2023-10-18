@@ -55,7 +55,8 @@ struct FriendPresentsMainView: View {
                     }
                     .sheet(isPresented: $isShowPresentCell) {
 //                        FriendPresentView(currentPresent: present, viewModel: PresentModelViewModel(present: present), userViewModel: HomeViewModel(), friendHomeViewModel: friendHomeViewModel, profileViewModel: ProfileViewModel(profile: friendHomeViewModel.friend))
-                        FriendPresentView(currentPresent: present, presentModelViewModel: PresentModelViewModel(present: present))
+                        FriendPresentView(currentPresent: present, presentModelViewModel: PresentModelViewModel(present: present), friendViewModel: FriendHomeViewModel(friend: friendHomeViewModel.friend))
+                        
                     }
                 }
             Text(present.name)
