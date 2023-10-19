@@ -11,6 +11,7 @@ struct PresentModalView: View {
     
     let currentPresent: PresentModel
     @ObservedObject var presentModelViewModel: PresentModelViewModel
+    @State private var isLoadImage = false
     let nameTextUrl: String = "[Ссылка на подарок]"
     
     init(currentPresent: PresentModel, presentModelViewModel: PresentModelViewModel) {
@@ -38,6 +39,11 @@ struct PresentModalView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                         
+                        if isLoadImage {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                                .scaleEffect(2)
+                        }
                         
                     }
                     .opacity(50)
@@ -126,34 +132,23 @@ struct PresentModalView: View {
                 .padding(.bottom, 15)
             }
         }
-        .onAppear {
-            presentModelViewModel.getPresentImage()
-        }
-//        .onFirstAppear {
-//            presentModelViewModel.getPresentImage()
-//        }
-    }
-}
-
-
-public extension View {
-    func onFirstAppear(_ action: @escaping () -> ()) -> some View {
-        modifier(FirstAppear(action: action))
-    }
-}
-
-private struct FirstAppear: ViewModifier {
-    let action: () -> ()
-    
-    @State private var hasAppeared = false
-    
-    func body(content: Content) -> some View {
-        
-        content.onAppear {
-            guard !hasAppeared else { return }
-            hasAppeared = true
+        .onFirstAppear {
+            isLoadImage = true
             
-            action()
+            StorageService.shared.downloadPresentImage(id: presentModelViewModel.present.id) { result in
+                switch result {
+                case .success(let data):
+                    isLoadImage = false
+                    if let img = UIImage(data: data) {
+                        presentModelViewModel.uiImage = img
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }
+
+
+

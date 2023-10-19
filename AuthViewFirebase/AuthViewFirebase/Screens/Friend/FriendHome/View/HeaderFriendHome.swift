@@ -11,6 +11,8 @@ import Kingfisher
 struct HeaderFriendCell: View {
     
     @ObservedObject var viewModel: FriendHomeViewModel
+    @State private var isLoadImage = false
+    
     
     
     var body: some View {
@@ -23,6 +25,13 @@ struct HeaderFriendCell: View {
                     .scaledToFill()
                     .frame(width: 120, height: 120)
                     .clipShape(Circle())
+                    .overlay {
+                        if isLoadImage {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                                .scaleEffect(2)
+                        }
+                    }
                 
                 
                 VStack {
@@ -40,8 +49,24 @@ struct HeaderFriendCell: View {
                     
                 }
             }
-            .onAppear {
-                viewModel.getImage()
+            .onFirstAppear {
+//                viewModel.getImage()
+                isLoadImage = true
+                
+                StorageService.shared.downloadUserImage(id: viewModel.friend.id) { result in
+                    switch result {
+                    case .success(let data):
+                        isLoadImage = false
+                        if let img = UIImage(data: data) {
+                            viewModel.uiImage = img
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+                
+                
+                
             }
             .padding(.leading)
     }
