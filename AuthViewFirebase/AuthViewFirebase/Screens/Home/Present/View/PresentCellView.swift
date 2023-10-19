@@ -68,7 +68,22 @@ struct PresentCellView: View {
                 Spacer()
             }
         }
-        .onAppear {
+//        .onAppear {
+//            isLoadingImage = true
+//            StorageService.shared.downloadPresentImage(id: present.id) { result in
+//                switch result {
+//                case .success(let data):
+//                    isLoadingImage = false
+//                    if let img = UIImage(data: data) {
+//                        self.viewModel.uiImage = img
+//                    }
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
+        
+        .onFirstAppear {
             isLoadingImage = true
             StorageService.shared.downloadPresentImage(id: present.id) { result in
                 switch result {

@@ -66,7 +66,7 @@ struct FriendPresentsMainView: View {
                 .font(.callout.bold())
                 .padding(.top, 3)
         }
-        .onAppear {
+        .onFirstAppear {
             isLoadingImage = true
             
             StorageService.shared.downloadPresentImage(id: present.id) { result in
