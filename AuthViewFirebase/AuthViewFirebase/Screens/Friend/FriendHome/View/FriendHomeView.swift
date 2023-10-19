@@ -13,6 +13,7 @@ struct FriendHomeView: View {
     @ObservedObject var presentModelViewModel: PresentModelViewModel
     @State private var isButtonPressed = false
     
+    
     var columns: [GridItem] = [
         GridItem(.fixed(150), spacing: 20),
         GridItem(.fixed(150), spacing: 20)
@@ -83,5 +84,7 @@ struct FriendHomeView: View {
             .onAppear {
                 presentModelViewModel.getPresentImage()
             }
+        
+        
     }
 }

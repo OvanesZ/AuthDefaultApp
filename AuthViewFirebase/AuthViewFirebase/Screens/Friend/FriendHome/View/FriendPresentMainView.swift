@@ -13,7 +13,8 @@ import FirebaseAuth
 struct FriendPresentsMainView: View {
     
     let present: PresentModel
-    @State var isShowPresentCell = false
+    @State private var isShowPresentCell = false
+    @State private var isLoadingImage = false
     @ObservedObject var friendHomeViewModel: FriendHomeViewModel
     @StateObject var viewModel = PresentModelViewModel(present: PresentModel(name: "", urlText: "", presentFromUserID: ""))
     
@@ -43,20 +44,20 @@ struct FriendPresentsMainView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                         
+                                        if isLoadingImage {
+                                            ProgressView()
+                                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                                                .scaleEffect(2)
+                                        }
+                                        
                                     }
                                     .opacity(50)
                                     .frame(width: 130, height: 130)
                                     .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-//                                    .overlay(alignment: .bottomLeading) {
-//                                        Text(present.name).foregroundColor(.white)
-//                                            .padding(.leading, 15)
-//                                            .padding(.bottom, 10)
-//                                    }
                             }
                         }
                     }
                     .sheet(isPresented: $isShowPresentCell) {
-//                        FriendPresentView(currentPresent: present, viewModel: PresentModelViewModel(present: present), userViewModel: HomeViewModel(), friendHomeViewModel: friendHomeViewModel, profileViewModel: ProfileViewModel(profile: friendHomeViewModel.friend))
                         FriendPresentView(currentPresent: present, presentModelViewModel: PresentModelViewModel(present: present), friendViewModel: FriendHomeViewModel(friend: friendHomeViewModel.friend))
                         
                     }
@@ -66,9 +67,12 @@ struct FriendPresentsMainView: View {
                 .padding(.top, 3)
         }
         .onAppear {
+            isLoadingImage = true
+            
             StorageService.shared.downloadPresentImage(id: present.id) { result in
                 switch result {
                 case .success(let data):
+                    isLoadingImage = false
                     if let img = UIImage(data: data) {
                         self.viewModel.uiImage = img
                     }
