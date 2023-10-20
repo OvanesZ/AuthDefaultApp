@@ -18,7 +18,6 @@ struct ProfileView: View {
     @State private var alertMessage = ""
     @State private var showImagePickerLibrary = false
     @State private var showImagePickerCamera = false
-    //    @State private var image = UIImage(named: "person")!
     
     @StateObject var viewModel: ProfileViewModel
     @StateObject private var viewModelPhotoPicker = PhotoPickerViewModel()

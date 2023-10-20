@@ -16,12 +16,14 @@ struct AuthViewFirebaseApp: App {
     var body: some Scene {
         WindowGroup {
             
-            if let user = AuthService.shared.currentUser {
-                let viewModel = MainTabBarViewModel(user: user)
-                MainTabBar(viewModel: viewModel)
-            } else {
-                AuthView()
-            }
+            SplashScreenView()
+            
+//            if let user = AuthService.shared.currentUser {
+//                let viewModel = MainTabBarViewModel(user: user)
+//                MainTabBar(viewModel: viewModel)
+//            } else {
+//                AuthView()
+//            }
             
             
         }
