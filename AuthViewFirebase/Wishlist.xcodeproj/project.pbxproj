@@ -74,6 +74,7 @@
 /* Begin PBXFileReference section */
 		4E19CD9E2AE1CF7F008AB36B /* FirstAppear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAppear.swift; sourceTree = "<group>"; };
 		4E19CDA02AE30F59008AB36B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		4E19CDA92AE31EB7008AB36B /* Wishlist-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Wishlist-Info.plist"; sourceTree = "<group>"; };
 		4ED389C42A91574E007E30D1 /* Wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ED389C72A91574E007E30D1 /* AuthViewFirebaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewFirebaseApp.swift; sourceTree = "<group>"; };
 		4ED389C92A91574E007E30D1 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		4ED389BB2A91574E007E30D1 = {
 			isa = PBXGroup;
 			children = (
+				4E19CDA92AE31EB7008AB36B /* Wishlist-Info.plist */,
 				4ED389C62A91574E007E30D1 /* AuthViewFirebase */,
 				4ED389D72A91574F007E30D1 /* AuthViewFirebaseTests */,
 				4ED389E12A915750007E30D1 /* AuthViewFirebaseUITests */,
@@ -781,6 +783,7 @@
 				DEVELOPMENT_TEAM = 73NUYU5X4U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Wishlist-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите доступ к камере";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Разрешите доступ к галерее";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -812,6 +815,7 @@
 				DEVELOPMENT_TEAM = 73NUYU5X4U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Wishlist-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите доступ к камере";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Разрешите доступ к галерее";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

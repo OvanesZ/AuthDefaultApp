@@ -34,7 +34,8 @@ struct SplashScreenView: View {
                 }
                 VStack {
                     Text("WISHLIST")
-                        .font(.largeTitle.bold()).underline()
+//                        .font(.largeTitle.bold()).underline()
+                        .font(Font.custom("Gloock-Regular", size: 48))
                         .foregroundColor(.white)
                     
                     
