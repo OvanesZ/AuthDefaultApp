@@ -13,7 +13,6 @@ struct PresentModalView: View {
     let currentPresent: PresentModel
     @ObservedObject var presentModelViewModel: PresentModelViewModel
     @State private var isLoadImage = false
-    @State private var urlImage: URL?
     let nameTextUrl: String = "[Ссылка на подарок]"
     
     init(currentPresent: PresentModel, presentModelViewModel: PresentModelViewModel) {
@@ -47,15 +46,26 @@ struct PresentModalView: View {
 //                                .scaleEffect(2)
 //                        }
                         
-                        AsyncImage(url: urlImage) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 350, height: 350)
-                        } placeholder: {
+//                        AsyncImage(url: urlImage) { image in
+//                            image
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fill)
+//                                .frame(width: 350, height: 350)
+//                        } placeholder: {
+//                            ProgressView()
+//                        }
+//                        .frame(width: 80, height: 80)
+                        
+                        KFImage(presentModelViewModel.url)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                        
+                        if isLoadImage {
                             ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                                .scaleEffect(2)
                         }
-                        .frame(width: 80, height: 80)
+                            
                         
                     }
                     .opacity(50)
@@ -161,12 +171,14 @@ struct PresentModalView: View {
 //        }
         
         .onFirstAppear {
+            isLoadImage = true
+            
             StorageService.shared.downloadURLPresentImage(id: presentModelViewModel.present.id) { result in
                 switch result {
                 case .success(let url):
+                    isLoadImage = false
                     if let url = url {
-//                        self.presentModelViewModel.url = url
-                        urlImage = url
+                        self.presentModelViewModel.url = url
                     }
                 case .failure(let error):
                     print(error.localizedDescription)

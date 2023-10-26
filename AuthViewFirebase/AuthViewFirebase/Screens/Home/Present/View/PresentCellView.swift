@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PresentCellView: View {
     
@@ -36,9 +37,9 @@ struct PresentCellView: View {
                                 } label: {
                                     RoundedRectangle(cornerRadius: 30, style: .continuous)
                                         .overlay {
-                                            Image(uiImage: viewModel.uiImage)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
+//                                            Image(uiImage: viewModel.uiImage)
+//                                                .resizable()
+//                                                .aspectRatio(contentMode: .fill)
                                             
 
 //                                            AsyncImage(url: viewModel.url) { image in
@@ -52,6 +53,10 @@ struct PresentCellView: View {
 //                                            .frame(width: 50, height: 50)
                                             
 
+                                            
+                                            KFImage(viewModel.url)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
                                             
                                             if isLoadingImage {
                                                 ProgressView()
@@ -76,33 +81,36 @@ struct PresentCellView: View {
             }
         }
         
-        .onFirstAppear {
-            isLoadingImage = true
-            StorageService.shared.downloadPresentImage(id: present.id) { result in
-                switch result {
-                case .success(let data):
-                    isLoadingImage = false
-                    if let img = UIImage(data: data) {
-                        self.viewModel.uiImage = img
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        }
-        
-//        .onAppear {
-//            StorageService.shared.downloadURLPresentImage(id: present.id) { result in
+//        .onFirstAppear {
+//            isLoadingImage = true
+//            StorageService.shared.downloadPresentImage(id: present.id) { result in
 //                switch result {
-//                case .success(let url):
-//                    if let url = url {
-//                        self.viewModel.url = url
+//                case .success(let data):
+//                    isLoadingImage = false
+//                    if let img = UIImage(data: data) {
+//                        self.viewModel.uiImage = img
 //                    }
 //                case .failure(let error):
 //                    print(error.localizedDescription)
 //                }
 //            }
 //        }
+        
+        .onAppear {
+            isLoadingImage = true
+            
+            StorageService.shared.downloadURLPresentImage(id: present.id) { result in
+                switch result {
+                case .success(let url):
+                    isLoadingImage = false
+                    if let url = url {
+                        self.viewModel.url = url
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
         
         
         
