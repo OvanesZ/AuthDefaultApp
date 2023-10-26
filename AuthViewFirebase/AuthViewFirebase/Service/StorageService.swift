@@ -85,5 +85,18 @@ class StorageService {
         }
     }
     
+    func downloadURLPresentImage(id: String, completion: @escaping (Result<URL?, Error>) -> ()) {
+        presentImageRef.child(id).downloadURL { url, error in
+            guard let data = url else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            completion(.success(url))
+        }
+    }
+    
+    
     
 }

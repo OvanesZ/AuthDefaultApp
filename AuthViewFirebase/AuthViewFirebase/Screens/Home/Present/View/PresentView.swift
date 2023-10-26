@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PresentModalView: View {
     
     let currentPresent: PresentModel
     @ObservedObject var presentModelViewModel: PresentModelViewModel
     @State private var isLoadImage = false
+    @State private var urlImage: URL?
     let nameTextUrl: String = "[Ссылка на подарок]"
     
     init(currentPresent: PresentModel, presentModelViewModel: PresentModelViewModel) {
@@ -35,15 +37,25 @@ struct PresentModalView: View {
                 
                 RoundedRectangle(cornerRadius: 30, style: .continuous)
                     .overlay {
-                        Image(uiImage: presentModelViewModel.uiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
+//                        Image(uiImage: presentModelViewModel.uiImage)
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fill)
+//
+//                        if isLoadImage {
+//                            ProgressView()
+//                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+//                                .scaleEffect(2)
+//                        }
                         
-                        if isLoadImage {
+                        AsyncImage(url: urlImage) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 350, height: 350)
+                        } placeholder: {
                             ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-                                .scaleEffect(2)
                         }
+                        .frame(width: 80, height: 80)
                         
                     }
                     .opacity(50)
@@ -132,21 +144,38 @@ struct PresentModalView: View {
                 .padding(.bottom, 15)
             }
         }
+//        .onFirstAppear {
+//            isLoadImage = true
+//            
+//            StorageService.shared.downloadPresentImage(id: presentModelViewModel.present.id) { result in
+//                switch result {
+//                case .success(let data):
+//                    isLoadImage = false
+//                    if let img = UIImage(data: data) {
+//                        presentModelViewModel.uiImage = img
+//                    }
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
+        
         .onFirstAppear {
-            isLoadImage = true
-            
-            StorageService.shared.downloadPresentImage(id: presentModelViewModel.present.id) { result in
+            StorageService.shared.downloadURLPresentImage(id: presentModelViewModel.present.id) { result in
                 switch result {
-                case .success(let data):
-                    isLoadImage = false
-                    if let img = UIImage(data: data) {
-                        presentModelViewModel.uiImage = img
+                case .success(let url):
+                    if let url = url {
+//                        self.presentModelViewModel.url = url
+                        urlImage = url
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
             }
         }
+        
+        
+        
     }
 }
 

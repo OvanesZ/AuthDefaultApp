@@ -70,8 +70,8 @@ struct SplashScreenView: View {
     }
 }
 
-struct SplashScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashScreenView()
-    }
-}
+//struct SplashScreenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SplashScreenView()
+//    }
+//}

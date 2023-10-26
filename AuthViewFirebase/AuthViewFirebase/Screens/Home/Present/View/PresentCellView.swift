@@ -40,6 +40,19 @@ struct PresentCellView: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                             
+
+//                                            AsyncImage(url: viewModel.url) { image in
+//                                                image
+//                                                    .resizable()
+//                                                    .aspectRatio(contentMode: .fill)
+//                                                    .frame(width: 135, height: 135)
+//                                            } placeholder: {
+//                                                ProgressView()
+//                                            }
+//                                            .frame(width: 50, height: 50)
+                                            
+
+                                            
                                             if isLoadingImage {
                                                 ProgressView()
                                                     .progressViewStyle(CircularProgressViewStyle(tint: .gray))
@@ -55,33 +68,13 @@ struct PresentCellView: View {
                         .sheet(isPresented: $isShowPresentCell) {
                             PresentModalView(currentPresent: present, presentModelViewModel: PresentModelViewModel(present: present))
                         }
-                        
-                        
-                        
                     }
-                
-                
                 Text(present.name)
                     .font(.callout.bold())
                     .padding(.top, 3)
-                
                 Spacer()
             }
         }
-//        .onAppear {
-//            isLoadingImage = true
-//            StorageService.shared.downloadPresentImage(id: present.id) { result in
-//                switch result {
-//                case .success(let data):
-//                    isLoadingImage = false
-//                    if let img = UIImage(data: data) {
-//                        self.viewModel.uiImage = img
-//                    }
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        }
         
         .onFirstAppear {
             isLoadingImage = true
@@ -97,6 +90,21 @@ struct PresentCellView: View {
                 }
             }
         }
+        
+//        .onAppear {
+//            StorageService.shared.downloadURLPresentImage(id: present.id) { result in
+//                switch result {
+//                case .success(let url):
+//                    if let url = url {
+//                        self.viewModel.url = url
+//                    }
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
+        
+        
         
     }
     

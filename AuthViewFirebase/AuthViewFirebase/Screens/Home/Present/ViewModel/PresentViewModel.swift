@@ -17,6 +17,7 @@ class PresentModelViewModel: ObservableObject {
     
     @Published var uiImage = UIImage(named: "logo_wishlist")!
     @Published var isHiddenReservButton: Bool
+    @Published var url: URL?
     
     init(present: PresentModel) {
         self.present = present
