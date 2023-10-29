@@ -15,6 +15,7 @@ class ProfileViewModel: ObservableObject {
     
     @Published var profile: UserModel
     @Published var image = UIImage(named: "person")!
+    @Published var isLoadImage = false
 
 
     // MARK: - init()
@@ -59,9 +60,12 @@ class ProfileViewModel: ObservableObject {
     
     func getImage() {
         
+        self.isLoadImage = true
+        
         StorageService.shared.downloadUserImage(id: AuthService.shared.currentUser!.uid) { result in
             switch result {
             case .success(let data):
+                self.isLoadImage = false
                 if let img = UIImage(data: data) {
                     self.image = img
                 }

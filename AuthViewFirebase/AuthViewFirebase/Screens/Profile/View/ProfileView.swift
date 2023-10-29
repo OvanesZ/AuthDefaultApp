@@ -138,6 +138,13 @@ struct ProfileView: View {
                     .scaledToFill()
                     .frame(width: 200, height: 200)
                     .clipShape(Circle())
+                    .overlay {
+                        if viewModel.isLoadImage {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                                .scaleEffect(2)
+                        }
+                    }
                     .onTapGesture {
                         isAvatarlertPresented.toggle()
                     }
