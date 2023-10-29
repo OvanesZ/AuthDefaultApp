@@ -62,6 +62,17 @@ class PresentModelViewModel: ObservableObject {
         }
     }
     
+    func deletePresentImage() {
+        StorageService.shared.deletePresentImage(id: present.id) { result in
+            switch result {
+            case .success(_):
+                print("Изображение подарка удалено из хранилища!")
+            case .failure(_):
+                print("Возникла ошибка при удалении изображения из хранилища")
+            }
+        }
+    }
+    
     
     
     //MARK: -- Резерв подарка
