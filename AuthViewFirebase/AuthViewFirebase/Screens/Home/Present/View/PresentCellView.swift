@@ -42,27 +42,27 @@ struct PresentCellView: View {
 //                                                .aspectRatio(contentMode: .fill)
                                             
 
-//                                            AsyncImage(url: viewModel.url) { image in
-//                                                image
-//                                                    .resizable()
-//                                                    .aspectRatio(contentMode: .fill)
-//                                                    .frame(width: 135, height: 135)
-//                                            } placeholder: {
-//                                                ProgressView()
-//                                            }
-//                                            .frame(width: 50, height: 50)
+                                            AsyncImage(url: viewModel.url) { image in
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 135, height: 135)
+                                            } placeholder: {
+                                                ProgressView()
+                                            }
+                                            .frame(width: 50, height: 50)
                                             
 
                                             
-                                            KFImage(viewModel.url)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                            
-                                            if isLoadingImage {
-                                                ProgressView()
-                                                    .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-                                                    .scaleEffect(2)
-                                            }
+//                                            KFImage(viewModel.url)
+//                                                .resizable()
+//                                                .aspectRatio(contentMode: .fill)
+//
+//                                            if isLoadingImage {
+//                                                ProgressView()
+//                                                    .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+//                                                    .scaleEffect(2)
+//                                            }
                                         }
                                         .opacity(50)
                                         .frame(width: 130, height: 130)
@@ -97,12 +97,12 @@ struct PresentCellView: View {
 //        }
         
         .onAppear {
-            isLoadingImage = true
-            
+//            isLoadingImage = true
+
             StorageService.shared.downloadURLPresentImage(id: present.id) { result in
                 switch result {
                 case .success(let url):
-                    isLoadingImage = false
+//                    isLoadingImage = false
                     if let url = url {
                         self.viewModel.url = url
                     }
@@ -111,6 +111,9 @@ struct PresentCellView: View {
                 }
             }
         }
+        
+        
+        
         
         
         

@@ -56,6 +56,18 @@ class StorageService {
         }
     }
     
+    func downloadURLUserImage(id: String, completion: @escaping (Result<URL?, Error>) -> ()) {
+        userImageRef.child(id).downloadURL { url, error in
+            guard let data = url else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            completion(.success(url))
+        }
+    }
+    
     func uploadPresentImage(id: String, image: Data, completion: @escaping (Result<String, Error>) -> ()) {
         
         let metadata = StorageMetadata()

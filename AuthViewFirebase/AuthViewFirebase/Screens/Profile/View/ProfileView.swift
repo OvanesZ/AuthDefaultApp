@@ -11,16 +11,22 @@ import Combine
 
 struct ProfileView: View {
     
-    @State var isAvatarlertPresented = false
-    @State var isQuitAlertPresented = false
-    @State var isAuthViewPresented = false
+    //MARK: - @State
+    
+    @State private var isAvatarlertPresented = false
+    @State private var isQuitAlertPresented = false
+    @State private var isAuthViewPresented = false
     @State private var isShowAlert = false
     @State private var alertMessage = ""
     @State private var showImagePickerLibrary = false
     @State private var showImagePickerCamera = false
     
+    //MARK: - @StateObject
+    
     @StateObject var viewModel: ProfileViewModel
     @StateObject private var viewModelPhotoPicker = PhotoPickerViewModel()
+    
+    //MARK: - let
     
     private let keyboardPublisher = Publishers.Merge(
         NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
@@ -225,7 +231,6 @@ struct ProfileView: View {
                             Spacer()
                         }
                     }
-                    
                 }
             }
         }

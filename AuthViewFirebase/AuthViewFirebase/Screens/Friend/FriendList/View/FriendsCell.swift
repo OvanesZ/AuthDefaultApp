@@ -12,6 +12,7 @@ struct FriendsCell: View {
     let friend: UserModel
     @State var uiImage = UIImage(named: "person")
     @State private var isLoadImage = false
+//    @State private var url: URL?
     
     init(friend: UserModel) {
         self.friend = friend
@@ -35,6 +36,18 @@ struct FriendsCell: View {
                     }
                 }
             
+//            AsyncImage(url: url) { image in
+//                image
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .frame(width: 60, height: 60)
+//                    .scaledToFill()
+//                    .clipShape(Circle())
+//            } placeholder: {
+//                ProgressView()
+//            }
+//            .frame(width: 20, height: 20)
+            
             
             
             Text(friend.email)
@@ -57,6 +70,25 @@ struct FriendsCell: View {
                 }
             }
         }
+        
+//        .onAppear {
+////            isLoadingImage = true
+//
+//            StorageService.shared.downloadURLUserImage(id: friend.id) { result in
+//                switch result {
+//                case .success(let url):
+////                    isLoadingImage = false
+//                    if let url = url {
+//                        self.url = url
+//                    }
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
+        
+        
+        
     }
     
 }

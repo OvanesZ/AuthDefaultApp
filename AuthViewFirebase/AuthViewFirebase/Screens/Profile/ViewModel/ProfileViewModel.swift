@@ -11,14 +11,21 @@ import SwiftUI
 
 class ProfileViewModel: ObservableObject {
     
+    // MARK: - @Published
+    
     @Published var profile: UserModel
     @Published var image = UIImage(named: "person")!
 
+
+    // MARK: - init()
     
     init(profile: UserModel) {
         self.profile = profile
     }
     
+    // MARK: - func()
+    
+    // Загружаю данные пользователя и аватарку в Firebase
     
     func setProfile() {
         
@@ -34,7 +41,10 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
+    // Получаю данные пользователя
+    
     func getProfile() {
+        
         DatabaseService.shared.getProfile { result in
             switch result {
             case .success(let user):
@@ -45,8 +55,11 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
+    // Получаю аватарку пользователя
+    
     func getImage() {
-        StorageService.shared.downloadUserImage(id: profile.id) { result in
+        
+        StorageService.shared.downloadUserImage(id: AuthService.shared.currentUser!.uid) { result in
             switch result {
             case .success(let data):
                 if let img = UIImage(data: data) {

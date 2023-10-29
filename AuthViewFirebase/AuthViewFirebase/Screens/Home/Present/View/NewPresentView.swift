@@ -138,13 +138,10 @@ struct NewPresentView: View {
                         dismiss()
                     }) {
                         Text("Создать")
-//                            .frame(width: 50, height: 25)
                             .padding(.init(top: 8, leading: 15, bottom: 8, trailing: 15))
-//                            .font(.title3.bold())
                             .font(.headline)
                             .foregroundColor(.white)
                             .background(Color.blue)
-//                            .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)), Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))]), startPoint: .top, endPoint: .bottom))
                             .cornerRadius(16)
                     }
                     .padding(.top, 20)

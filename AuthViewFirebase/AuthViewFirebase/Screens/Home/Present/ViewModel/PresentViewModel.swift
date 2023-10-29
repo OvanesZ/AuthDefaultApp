@@ -66,22 +66,22 @@ class PresentModelViewModel: ObservableObject {
     
     //MARK: -- Резерв подарка
     
-    func reservingPresent(_ present: PresentModel, _ user: UserModel, _ ownerPresent: UserModel) {
-        let docRef = Firestore.firestore().collection("Users").document(ownerPresent.id).collection("Wishlist").document(present.id)
-        
-        docRef.updateData([
-            "presentFromUser.email": user.email,
-            "presentFromUser.displayName": user.displayName,
-            "presentFromUser.userImageURLText": user.userImageURLText,
-            "isReserved": true
-        ]) { error in
-            if let error = error {
-                print("Ошибка при обновлении документа \(error)")
-            } else {
-                print("Документ успешно обновлены")
-            }
-        }
-    }
+//    func reservingPresent(_ present: PresentModel, _ user: UserModel, _ ownerPresent: UserModel) {
+//        let docRef = Firestore.firestore().collection("Users").document(ownerPresent.id).collection("Wishlist").document(present.id)
+//
+//        docRef.updateData([
+//            "presentFromUser.email": user.email,
+//            "presentFromUser.displayName": user.displayName,
+//            "presentFromUser.userImageURLText": user.userImageURLText,
+//            "isReserved": true
+//        ]) { error in
+//            if let error = error {
+//                print("Ошибка при обновлении документа \(error)")
+//            } else {
+//                print("Документ успешно обновлены")
+//            }
+//        }
+//    }
     
     //MARK: -- Резерв подарка без информации о друге 
     
@@ -101,98 +101,98 @@ class PresentModelViewModel: ObservableObject {
     
     // MARK: -- Загружаю фото в Storage в дирректорию UserAvatarImage с названием фото email пользователя
     
-    func loadImage(inputImage: UIImage) {
-        
-        let uploadRef = Storage.storage().reference(withPath: "PresentsImage/\(currentUser?.email ?? "")/\(UUID()).jpg")
-        guard let imageData = inputImage.jpegData(compressionQuality: 0.75) else { return }
-        let uploadMetadata = StorageMetadata.init()
-        uploadMetadata.contentType = "image/jpeg"
-        
-        uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
-            if let error = error {
-                print("Возникла ошибка: \(error.localizedDescription)")
-                return
-            }
-            print("Загрузка выполнена успешно: \(String(describing: downloadMetadata))")
-        }
-    }
+//    func loadImage(inputImage: UIImage) {
+//
+//        let uploadRef = Storage.storage().reference(withPath: "PresentsImage/\(currentUser?.email ?? "")/\(UUID()).jpg")
+//        guard let imageData = inputImage.jpegData(compressionQuality: 0.75) else { return }
+//        let uploadMetadata = StorageMetadata.init()
+//        uploadMetadata.contentType = "image/jpeg"
+//
+//        uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+//            if let error = error {
+//                print("Возникла ошибка: \(error.localizedDescription)")
+//                return
+//            }
+//            print("Загрузка выполнена успешно: \(String(describing: downloadMetadata))")
+//        }
+//    }
     
     
     // MARK: -- Получаю url загруженной фотографии пользователя
     
-    func fetchURLImage() {
-        let storageRef = Storage.storage().reference(withPath: "PresentsImage/\(currentUser?.email ?? "")/\(UUID()).jpg")
-        
-        storageRef.downloadURL { (url, error) in
-            if let error = error {
-                print("Ошибка при получении URL адреса: \(error.localizedDescription)")
-            } else {
-                print(url ?? "")
-                self.updatePresentUrlPhoto(url?.description ?? "")
-            }
-        }
-    }
+//    func fetchURLImage() {
+//        let storageRef = Storage.storage().reference(withPath: "PresentsImage/\(currentUser?.email ?? "")/\(UUID()).jpg")
+//
+//        storageRef.downloadURL { (url, error) in
+//            if let error = error {
+//                print("Ошибка при получении URL адреса: \(error.localizedDescription)")
+//            } else {
+//                print(url ?? "")
+//                self.updatePresentUrlPhoto(url?.description ?? "")
+//            }
+//        }
+//    }
     
     // MARK: -- Обновляю свойство presentImageURLText документа подарка коллекции "Wishlist"
     
-    func updatePresentUrlPhoto(_ urlString: String) {
-        
-        let docRef = Firestore.firestore().collection("User").document(currentUser?.email ?? "").collection("Wishlist").document(present.name)
-        
-        docRef.updateData([
-            "presentImageURLText": urlString
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
+//    func updatePresentUrlPhoto(_ urlString: String) {
+//
+//        let docRef = Firestore.firestore().collection("User").document(currentUser?.email ?? "").collection("Wishlist").document(present.name)
+//
+//        docRef.updateData([
+//            "presentImageURLText": urlString
+//        ]) { err in
+//            if let err = err {
+//                print("Error updating document: \(err)")
+//            } else {
+//                print("Document successfully updated")
+//            }
+//        }
+//    }
     
     
     
     
     // MARK: -- Загружаю фото в Storage в дирректорию PresentsImage с названием фото подарка
     
-    func loadImagePresent(inputImage: UIImage) {
-        
-        let uploadRef = Storage.storage().reference(withPath: "UserAvatarImage/\(Auth.auth().currentUser?.email ?? "").jpg")
-        guard let imageData = inputImage.jpegData(compressionQuality: 0.75) else { return }
-        let uploadMetadata = StorageMetadata.init()
-        uploadMetadata.contentType = "image/jpeg"
-        
-        uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
-            if let error = error {
-                print("Возникла ошибка: \(error.localizedDescription)")
-                return
-            }
-            print("Загрузка выполнена успешно: \(String(describing: downloadMetadata))")
-        }
-        
-        uploadRef.downloadURL { (url, error) in
-            guard url != nil else {
-                // Uh-oh, an error occurred!
-                return
-            }
-            self.updateUserPresentPhoto(url?.description ?? "")
-        }
-    }
+//    func loadImagePresent(inputImage: UIImage) {
+//
+//        let uploadRef = Storage.storage().reference(withPath: "UserAvatarImage/\(Auth.auth().currentUser?.email ?? "").jpg")
+//        guard let imageData = inputImage.jpegData(compressionQuality: 0.75) else { return }
+//        let uploadMetadata = StorageMetadata.init()
+//        uploadMetadata.contentType = "image/jpeg"
+//
+//        uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+//            if let error = error {
+//                print("Возникла ошибка: \(error.localizedDescription)")
+//                return
+//            }
+//            print("Загрузка выполнена успешно: \(String(describing: downloadMetadata))")
+//        }
+//
+//        uploadRef.downloadURL { (url, error) in
+//            guard url != nil else {
+//                // Uh-oh, an error occurred!
+//                return
+//            }
+//            self.updateUserPresentPhoto(url?.description ?? "")
+//        }
+//    }
     
-    func updateUserPresentPhoto(_ urlString: String) {
-        
-        let docRef = Firestore.firestore().collection("User").document(Auth.auth().currentUser?.email ?? "")
-        
-        docRef.updateData([
-            "userImageURLText": urlString
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
+//    func updateUserPresentPhoto(_ urlString: String) {
+//
+//        let docRef = Firestore.firestore().collection("User").document(Auth.auth().currentUser?.email ?? "")
+//
+//        docRef.updateData([
+//            "userImageURLText": urlString
+//        ]) { err in
+//            if let err = err {
+//                print("Error updating document: \(err)")
+//            } else {
+//                print("Document successfully updated")
+//            }
+//        }
+//    }
     
     
     // MARK: -- Удаляю подарок из коллекции "Wishlist"
