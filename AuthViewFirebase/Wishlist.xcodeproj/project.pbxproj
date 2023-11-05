@@ -10,6 +10,9 @@
 		4E19CD9F2AE1CF7F008AB36B /* FirstAppear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19CD9E2AE1CF7F008AB36B /* FirstAppear.swift */; };
 		4E19CDA12AE30F59008AB36B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19CDA02AE30F59008AB36B /* SplashScreenView.swift */; };
 		4E19CDA32AE3135F008AB36B /* GochiHand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EEF220C2AB8D4C9001B736F /* GochiHand-Regular.ttf */; };
+		4E4687ED2AF6E09B0032D5B7 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 4E4687EC2AF6E09B0032D5B7 /* GoogleSignIn */; };
+		4E4687EF2AF6E09B0032D5B7 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E4687EE2AF6E09B0032D5B7 /* GoogleSignInSwift */; };
+		4E4687F12AF6E6E70032D5B7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4687F02AF6E6E70032D5B7 /* Utilities.swift */; };
 		4ED389C82A91574E007E30D1 /* AuthViewFirebaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED389C72A91574E007E30D1 /* AuthViewFirebaseApp.swift */; };
 		4ED389CA2A91574E007E30D1 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED389C92A91574E007E30D1 /* AuthView.swift */; };
 		4ED389CC2A91574F007E30D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ED389CB2A91574F007E30D1 /* Assets.xcassets */; };
@@ -75,6 +78,7 @@
 		4E19CD9E2AE1CF7F008AB36B /* FirstAppear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAppear.swift; sourceTree = "<group>"; };
 		4E19CDA02AE30F59008AB36B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		4E19CDA92AE31EB7008AB36B /* Wishlist-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Wishlist-Info.plist"; sourceTree = "<group>"; };
+		4E4687F02AF6E6E70032D5B7 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		4ED389C42A91574E007E30D1 /* Wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ED389C72A91574E007E30D1 /* AuthViewFirebaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewFirebaseApp.swift; sourceTree = "<group>"; };
 		4ED389C92A91574E007E30D1 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -125,9 +129,11 @@
 			files = (
 				4ED389FD2A925D9B007E30D1 /* FirebaseAuth in Frameworks */,
 				4ED389FF2A925D9B007E30D1 /* FirebaseFirestore in Frameworks */,
+				4E4687EF2AF6E09B0032D5B7 /* GoogleSignInSwift in Frameworks */,
 				4ED38A012A925D9B007E30D1 /* FirebaseStorage in Frameworks */,
 				4EEF21C42A9CFC5E001B736F /* FirebaseFirestoreSwift in Frameworks */,
 				4EEF21CF2A9D05AD001B736F /* Kingfisher in Frameworks */,
+				4E4687ED2AF6E09B0032D5B7 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +243,7 @@
 				4EEF21FF2AB61626001B736F /* PhotoPicker.swift */,
 				4EEF22012AB649F5001B736F /* ImagePicker.swift */,
 				4EEF22032AB65515001B736F /* StorageService.swift */,
+				4E4687F02AF6E6E70032D5B7 /* Utilities.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -468,6 +475,8 @@
 				4ED38A002A925D9B007E30D1 /* FirebaseStorage */,
 				4EEF21C32A9CFC5E001B736F /* FirebaseFirestoreSwift */,
 				4EEF21CE2A9D05AD001B736F /* Kingfisher */,
+				4E4687EC2AF6E09B0032D5B7 /* GoogleSignIn */,
+				4E4687EE2AF6E09B0032D5B7 /* GoogleSignInSwift */,
 			);
 			productName = AuthViewFirebase;
 			productReference = 4ED389C42A91574E007E30D1 /* Wishlist.app */;
@@ -544,6 +553,7 @@
 			packageReferences = (
 				4ED389FB2A925D9B007E30D1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4EEF21CD2A9D05AD001B736F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				4E4687EB2AF6E09B0032D5B7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 4ED389C52A91574E007E30D1 /* Products */;
 			projectDirPath = "";
@@ -597,6 +607,7 @@
 				4ED389F62A924D43007E30D1 /* FriendsView.swift in Sources */,
 				4EEF22022AB649F5001B736F /* ImagePicker.swift in Sources */,
 				4EEF21C62A9CFC90001B736F /* PresentCellView.swift in Sources */,
+				4E4687F12AF6E6E70032D5B7 /* Utilities.swift in Sources */,
 				4EEF21F32AA3FF6A001B736F /* FriendHomeViewModel.swift in Sources */,
 				4EEF21E52A9E8AA7001B736F /* FriendHomeView.swift in Sources */,
 				4ED389F42A924D2C007E30D1 /* HomeView.swift in Sources */,
@@ -954,6 +965,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4E4687EB2AF6E09B0032D5B7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		4ED389FB2A925D9B007E30D1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -973,6 +992,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4E4687EC2AF6E09B0032D5B7 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E4687EB2AF6E09B0032D5B7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		4E4687EE2AF6E09B0032D5B7 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E4687EB2AF6E09B0032D5B7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		4ED389FC2A925D9B007E30D1 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4ED389FB2A925D9B007E30D1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

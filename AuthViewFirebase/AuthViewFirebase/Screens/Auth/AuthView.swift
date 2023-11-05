@@ -7,8 +7,43 @@
 
 import SwiftUI
 import Combine
+import GoogleSignIn
+import GoogleSignInSwift
+import FirebaseAuth
+
+@MainActor
+final class AuthenticationViewModel: ObservableObject {
+
+    func signInGoogle() async throws {
+        guard let topVC = Utilities.shared.topViewController() else {
+            throw URLError(.cannotFindHost)
+        }
+
+        let gidSignInResult = try await GIDSignIn.sharedInstance.signIn(withPresenting: topVC)
+
+        guard let idToken: String = gidSignInResult.user.idToken?.tokenString else {
+            throw URLError(.badServerResponse)
+        }
+
+        let accessToken = gidSignInResult.user.accessToken.tokenString
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: accessToken)
+
+        AuthService.shared.signInWithGoogle(credential: credential) { result in
+            switch result {
+            case .success(_):
+                print("good")
+            case .failure(let error):
+                print(error)
+            }
+        }
+
+    }
+}
 
 struct AuthView: View {
+    
+    @StateObject private var viewModel = AuthenticationViewModel()
     
     @State private var login = ""
     @State private var password = ""
@@ -142,6 +177,20 @@ struct AuthView: View {
                 }
 
             }
+            
+            GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .wide, state: .normal)) {
+                Task {
+                    do {
+                        try await viewModel.signInGoogle()
+                        isTabViewShow.toggle()
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            
+            
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
 //        .background(Image("bg")
