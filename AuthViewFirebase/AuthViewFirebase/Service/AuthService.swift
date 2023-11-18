@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import Firebase
 
 class AuthService {
     
@@ -114,8 +115,10 @@ extension AuthService {
             if let result = result {
                 completion(.success(result.user))
                 let userGoogle = result.user
+                print(userGoogle.providerData)
                 
-                let currentUser = UserModel(id: userGoogle.uid, email: userGoogle.email ?? "", displayName: userGoogle.displayName ?? "", address: "", userImageURLText: "", friendsID: [], dateOfBirth: Date(), requestToFriend: [])
+                let currentUser = UserModel(id: userGoogle.uid, email: userGoogle.email ?? "", displayName: userGoogle.displayName ?? "", address: "", dateOfBirth: Date())
+                
                 
                 DatabaseService.shared.setProfile(user: currentUser, image: Data()) { resultDB in
                     switch resultDB {
@@ -125,8 +128,6 @@ extension AuthService {
                         completion(.failure(error))
                     }
                 }
-                
-                
             } else if let error = error {
                 completion(.failure(error))
             }
@@ -134,7 +135,5 @@ extension AuthService {
     }
     
     
-    
-    
-    
 }
+
