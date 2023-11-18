@@ -12,7 +12,7 @@ import GoogleSignInSwift
 import FirebaseAuth
 
 @MainActor
-final class AuthenticationViewModel: ObservableObject {
+final class AuthenticationsViewModel: ObservableObject {
 
     func signInGoogle() async throws {
         guard let topVC = Utilities.shared.topViewController() else {
@@ -43,7 +43,7 @@ final class AuthenticationViewModel: ObservableObject {
 
 struct AuthView: View {
     
-    @StateObject private var viewModel = AuthenticationViewModel()
+    @StateObject private var viewModel = AuthenticationsViewModel()
     
     @State private var login = ""
     @State private var password = ""
