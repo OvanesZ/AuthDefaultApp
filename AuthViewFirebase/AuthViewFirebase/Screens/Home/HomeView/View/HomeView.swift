@@ -13,7 +13,7 @@ struct HomeView: View {
     
     
     @State private var isShowingNewPresentView = false
-    @ObservedObject var viewModel: HomeViewModel
+    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
     
     
     private var columns: [GridItem] = [
@@ -47,6 +47,7 @@ struct HomeView: View {
                         }
                     }
                 }
+//                .onAppear(perform: viewModel.fetchWishlist)
                 .background(
                     Image("bglogo_wishlist")
                     .resizable()

@@ -75,5 +75,11 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
+    // Выход из аккаунта
+    
+    func signOut() throws {
+        try AuthenticationManager.shared.signOut()
+    }
+    
     
 }

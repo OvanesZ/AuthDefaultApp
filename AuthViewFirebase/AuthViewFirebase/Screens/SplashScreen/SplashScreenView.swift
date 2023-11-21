@@ -17,12 +17,13 @@ struct SplashScreenView: View {
         
         
         if isActive {
-            if let user = AuthService.shared.currentUser {
-                let viewModel = MainTabBarViewModel(user: user)
-                MainTabBar(viewModel: viewModel)
-            } else {
-                AuthView()
-            }
+//            if let user = AuthService.shared.currentUser {
+//                let viewModel = MainTabBarViewModel(user: user)
+//                MainTabBar(viewModel: viewModel)
+//            } else {
+//                AuthView()
+//            }
+            RootView()
         } else {
             ZStack {
                 GeometryReader { geometry in

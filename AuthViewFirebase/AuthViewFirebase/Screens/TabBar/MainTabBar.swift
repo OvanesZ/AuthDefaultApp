@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MainTabBar: View {
     
-    var viewModel: MainTabBarViewModel
+//    @StateObject var viewModel: MainTabBarViewModel = MainTabBarViewModel()
+    
+//    @State var showSignInView = false
+    @Binding var showSignInView: Bool
     
     var body: some View {
         
@@ -28,10 +31,9 @@ struct MainTabBar: View {
                         Image(systemName: "person.3.sequence")
                         Text("Друзья")
                     }
-                   
                 }
-            
-            ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", email: "", displayName: "", address: "", dateOfBirth: Date())))
+    
+            ProfileView(viewModel: ProfileViewModel(profile: UserModel(id: "", email: "", displayName: "", address: "", dateOfBirth: Date())), showSignInView: $showSignInView)
                 .tabItem {
                     VStack {
                         Image(systemName: "gearshape")

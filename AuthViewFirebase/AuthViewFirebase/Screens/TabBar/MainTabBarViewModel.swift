@@ -10,9 +10,9 @@ import FirebaseAuth
 
 class MainTabBarViewModel: ObservableObject {
     
-    @Published var user: User
+//    @Published var user: User
 
-    init(user: User) {
-        self.user = user
-    }
+//    init(user: User) {
+//        self.user = user
+//    }
 }

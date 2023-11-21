@@ -18,9 +18,9 @@ final class HomeViewModel: ObservableObject {
     var currentUser = Auth.auth().currentUser
     
     
-    init() {
-        fetchWishlist()
-    }
+//    init() {
+//        fetchWishlist()
+//    }
     
     
     

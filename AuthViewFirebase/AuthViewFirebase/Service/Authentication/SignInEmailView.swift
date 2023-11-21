@@ -51,7 +51,7 @@ struct SignInEmailView: View {
                 .padding()
                 .background(Color.gray.opacity(0.4))
                 .cornerRadius(10)
-            
+            // Действие на авторизацию и регистрацию в одной кнопке. При желании можно сделать две разные кнопки.
             Button {
                 Task {
                     do {

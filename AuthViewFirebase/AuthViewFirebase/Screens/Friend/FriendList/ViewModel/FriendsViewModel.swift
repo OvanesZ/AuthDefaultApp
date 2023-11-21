@@ -30,9 +30,9 @@ final class FriendsViewModel: ObservableObject {
     init(friend: UserModel) {
         self.friend = friend
         
-        fetchUsers()
-        getFriends()
-        getRequest()
+//        fetchUsers()
+//        getFriends()
+//        getRequest()
     }
     
     

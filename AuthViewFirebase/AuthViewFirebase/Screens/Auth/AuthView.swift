@@ -200,9 +200,9 @@ struct AuthView: View {
         .animation(Animation.easeInOut(duration: 0.4), value: isAuth)
         .fullScreenCover(isPresented: $isTabViewShow) {
             
-            let mainTabBarViewModel = MainTabBarViewModel(user: AuthService.shared.currentUser!)
+//            let mainTabBarViewModel = MainTabBarViewModel(user: AuthService.shared.currentUser!)
             
-            MainTabBar(viewModel: mainTabBarViewModel)
+//            MainTabBar(viewModel: mainTabBarViewModel)
         }
         .onTapGesture {
             UIApplication.shared.endEditing()
