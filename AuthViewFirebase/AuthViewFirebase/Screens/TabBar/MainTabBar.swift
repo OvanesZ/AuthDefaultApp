@@ -17,15 +17,16 @@ struct MainTabBar: View {
     var body: some View {
         
         TabView {
-            HomeView(viewModel: HomeViewModel())
+//            HomeView(viewModel: HomeViewModel())
+            HomeView()
                 .tabItem {
                     VStack {
                         Image(systemName: "rectangle.3.group")
                         Text("Главная")
                     }
                 }
-            
-            FriendsView(friendViewModel: FriendsViewModel(friend: UserModel(id: "", email: "", displayName: "", address: "", dateOfBirth: Date())), userViewModel: HomeViewModel())
+            FriendsView(userViewModel: HomeViewModel())
+//            FriendsView(friendViewModel: FriendsViewModel(friend: UserModel(id: "", email: "", displayName: "", address: "", dateOfBirth: Date())), userViewModel: HomeViewModel())
                 .tabItem {
                     VStack {
                         Image(systemName: "person.3.sequence")

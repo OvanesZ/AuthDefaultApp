@@ -13,7 +13,7 @@ struct HomeView: View {
     
     
     @State private var isShowingNewPresentView = false
-    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @StateObject var viewModel: HomeViewModel = HomeViewModel()
     
     
     private var columns: [GridItem] = [
@@ -21,9 +21,9 @@ struct HomeView: View {
         GridItem(.fixed(150), spacing: 20)
     ]
     
-    init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
-    }
+//    init(viewModel: HomeViewModel) {
+//        self.viewModel = viewModel
+//    }
     
     var body: some View {
         
@@ -47,7 +47,7 @@ struct HomeView: View {
                         }
                     }
                 }
-//                .onAppear(perform: viewModel.fetchWishlist)
+                .onAppear(perform: viewModel.fetchWishlist)
                 .background(
                     Image("bglogo_wishlist")
                     .resizable()

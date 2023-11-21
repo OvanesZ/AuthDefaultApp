@@ -24,16 +24,16 @@ final class FriendsViewModel: ObservableObject {
     var myRequestID: [String] = [" "]
     
     var currentUser = Auth.auth().currentUser
-    let friend: UserModel
+//    let friend: UserModel
     
  
-    init(friend: UserModel) {
-        self.friend = friend
-        
-//        fetchUsers()
-//        getFriends()
-//        getRequest()
-    }
+//    init(friend: UserModel) {
+//        self.friend = friend
+//
+////        fetchUsers()
+////        getFriends()
+////        getRequest()
+//    }
     
     
     // MARK: -- Прослушиватель всех пользователей
@@ -136,76 +136,76 @@ final class FriendsViewModel: ObservableObject {
         
     }
     
-    func setFollowing() {
-        let docRefUser = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Following").document(friend.id)
-        
-        let docData: [String: Any] = [
-            "id": friend.id,
-            "status": false
-        ]
-        
-        docRefUser.setData(docData) { error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("Done")
-            }
-        }
-        
-        
-        let docRefFriend = Firestore.firestore().collection("Users").document(friend.id).collection("Followers").document(AuthService.shared.currentUser!.uid)
-        
-        let docDataFriend: [String: Any] = [
-            "id": AuthService.shared.currentUser!.uid,
-            "status": false
-        ]
-        
-        docRefFriend.setData(docDataFriend) { error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("Done")
-            }
-        }
-        
-        
-        
-    }
-    
-    func changeStatus() {
-        let docRefUser = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Following").document(friend.id)
-        
-        docRefUser.updateData([
-            "status": true
-        ]) { error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("Done")
-            }
-        }
-        
-        let docRefFriend = Firestore.firestore().collection("Users").document(friend.id).collection("Followers").document(AuthService.shared.currentUser!.uid)
-        
-        docRefFriend.updateData([
-            "status": true
-        ]) { error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("Done")
-            }
-        }
-    }
-    
-    
-    func fetchFollowers() {
-//        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Followers")
-        
-        
-        
-        
-    }
+//    func setFollowing() {
+//        let docRefUser = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Following").document(friend.id)
+//        
+//        let docData: [String: Any] = [
+//            "id": friend.id,
+//            "status": false
+//        ]
+//        
+//        docRefUser.setData(docData) { error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                print("Done")
+//            }
+//        }
+//        
+//        
+//        let docRefFriend = Firestore.firestore().collection("Users").document(friend.id).collection("Followers").document(AuthService.shared.currentUser!.uid)
+//        
+//        let docDataFriend: [String: Any] = [
+//            "id": AuthService.shared.currentUser!.uid,
+//            "status": false
+//        ]
+//        
+//        docRefFriend.setData(docDataFriend) { error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                print("Done")
+//            }
+//        }
+//        
+//        
+//        
+//    }
+//    
+//    func changeStatus() {
+//        let docRefUser = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Following").document(friend.id)
+//        
+//        docRefUser.updateData([
+//            "status": true
+//        ]) { error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                print("Done")
+//            }
+//        }
+//        
+//        let docRefFriend = Firestore.firestore().collection("Users").document(friend.id).collection("Followers").document(AuthService.shared.currentUser!.uid)
+//        
+//        docRefFriend.updateData([
+//            "status": true
+//        ]) { error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                print("Done")
+//            }
+//        }
+//    }
+//    
+//    
+//    func fetchFollowers() {
+////        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Followers")
+//        
+//        
+//        
+//        
+//    }
     
     
     
