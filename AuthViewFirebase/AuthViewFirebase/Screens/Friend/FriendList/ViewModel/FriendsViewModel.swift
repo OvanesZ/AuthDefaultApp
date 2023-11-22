@@ -71,34 +71,36 @@ final class FriendsViewModel: ObservableObject {
 
     func getFriends() {
         
-        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid)
+        if let user = AuthService.shared.currentUser {
+            let docRef = Firestore.firestore().collection("Users").document(user.uid)
+            
+            docRef.addSnapshotListener { snapshot, error in
+                guard let document = snapshot else {
+                    print("Ошибка при получении id друзей \(error!)")
+                    return
+                }
 
-        
-        docRef.addSnapshotListener { snapshot, error in
-            guard let document = snapshot else {
-                print("Ошибка при получении id друзей \(error!)")
-                return
-            }
+                guard let data = document.data() else {
+                    print("Документ пустой")
+                    return
+                }
 
-            guard let data = document.data() else {
-                print("Документ пустой")
-                return
+                guard let id = data["friendsID"] as? [String] else { return }
+                self.myFriendsID = id
             }
-
-            guard let id = data["friendsID"] as? [String] else { return }
-            self.myFriendsID = id
-        }
-        
-        Firestore.firestore().collection("Users").whereField("id", in: myFriendsID).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                
-                self.myFriends = querySnapshot?.documents.compactMap {
-                    try? $0.data(as: UserModel.self)
-                } ?? []
-                
+            
+            Firestore.firestore().collection("Users").whereField("id", in: myFriendsID).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    
+                    self.myFriends = querySnapshot?.documents.compactMap {
+                        try? $0.data(as: UserModel.self)
+                    } ?? []
+                }
             }
+        } else {
+            return
         }
     }
     
@@ -106,34 +108,35 @@ final class FriendsViewModel: ObservableObject {
 
     func getRequest() {
         
-        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid)
+        if let user = AuthService.shared.currentUser {
+            let docRef = Firestore.firestore().collection("Users").document(user.uid)
+            docRef.addSnapshotListener { snapshot, error in
+                guard let document = snapshot else {
+                    print("Ошибка при получении id друзей \(error!)")
+                    return
+                }
 
-        
-        docRef.addSnapshotListener { snapshot, error in
-            guard let document = snapshot else {
-                print("Ошибка при получении id друзей \(error!)")
-                return
+                guard let data = document.data() else {
+                    print("Документ пустой")
+                    return
+                }
+
+                guard let id = data["requestToFriend"] as? [String] else { return }
+                self.myRequestID = id
             }
-
-            guard let data = document.data() else {
-                print("Документ пустой")
-                return
+            
+            Firestore.firestore().collection("Users").whereField("id", in: myRequestID).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    self.myRequest = querySnapshot?.documents.compactMap {
+                        try? $0.data(as: UserModel.self)
+                    } ?? []
+                }
             }
-
-            guard let id = data["requestToFriend"] as? [String] else { return }
-            self.myRequestID = id
+        } else {
+            return
         }
-        
-        Firestore.firestore().collection("Users").whereField("id", in: myRequestID).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                self.myRequest = querySnapshot?.documents.compactMap {
-                    try? $0.data(as: UserModel.self)
-                } ?? []
-            }
-        }
-        
     }
     
 //    func setFollowing() {

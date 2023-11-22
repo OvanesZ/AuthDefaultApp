@@ -62,16 +62,20 @@ class ProfileViewModel: ObservableObject {
         
         self.isLoadImage = true
         
-        StorageService.shared.downloadUserImage(id: AuthService.shared.currentUser!.uid) { result in
-            switch result {
-            case .success(let data):
-                self.isLoadImage = false
-                if let img = UIImage(data: data) {
-                    self.image = img
+        if let user = AuthService.shared.currentUser {
+            StorageService.shared.downloadUserImage(id: user.uid) { result in
+                switch result {
+                case .success(let data):
+                    self.isLoadImage = false
+                    if let img = UIImage(data: data) {
+                        self.image = img
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
             }
+        } else {
+            return
         }
     }
     
