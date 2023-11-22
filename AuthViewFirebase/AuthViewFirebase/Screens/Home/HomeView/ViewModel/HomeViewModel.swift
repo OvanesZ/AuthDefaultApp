@@ -29,16 +29,23 @@ final class HomeViewModel: ObservableObject {
     // MARK: -- Прослушиватель обновлений коллекции Wishlist. (пишет все данные в переменную wishlist)
     
     func fetchWishlist() {
-        let docRef = Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Wishlist")
-        docRef.addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+        
+        if let user = AuthService.shared.currentUser {
+            let docRef = Firestore.firestore().collection("Users").document(user.uid).collection("Wishlist")
+            docRef.addSnapshotListener { (snapshot, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                self.wishlist = snapshot?.documents.compactMap {
+                    try? $0.data(as: PresentModel.self)
+                } ?? []
             }
-            self.wishlist = snapshot?.documents.compactMap {
-                try? $0.data(as: PresentModel.self)
-            } ?? []
+        } else {
+            return
         }
+        
+        
     }
     
     
