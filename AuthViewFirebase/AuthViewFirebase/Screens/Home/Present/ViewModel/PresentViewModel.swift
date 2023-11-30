@@ -28,13 +28,8 @@ class PresentModelViewModel: ObservableObject {
     
     //MARK: -- Добавляю новый подарок в коллекцию "Wishlist"
     
-//    func loadNewPresentInCollection (_ present: PresentModel) {
-//        do {
-//            try Firestore.firestore().collection("Users").document(AuthService.shared.currentUser!.uid).collection("Wishlist").document(present.name ?? "").setData(from: present)
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-//    }
+    
+    // устарело, позже отключить!
     
     func setPresent(newPresent: PresentModel) {
         guard let imageData = uiImage.jpegData(compressionQuality: 0.75) else { return }
@@ -48,6 +43,17 @@ class PresentModelViewModel: ObservableObject {
             }
         }
     }
+    
+    // Новый асинхронный запрос для создания подарка
+    
+    func setPresentInFirestore(newPresent: DBPresent) async throws {
+        try await PresentManager.shared.createNewPresent(userId: currentUser!.uid, present: newPresent)
+    }
+    
+    
+    
+    
+    
     
     func getPresentImage() {
         StorageService.shared.downloadPresentImage(id: present.id) { result in

@@ -133,8 +133,21 @@ struct NewPresentView: View {
                     Spacer()
                     
                     Button(action: {
+                        
+                        // устарело, чуть позже отключить!
                         let newPresent = PresentModel(name: presentName, urlText: presentUrlForMarket, presentFromUserID: "", presentDescription: presentDescription)
                         viewModel.setPresent(newPresent: newPresent)
+                        
+                        
+                        // Запрос выполняется асинхронно для нового типа пользователя
+                        Task {
+                            let newDBPresent = DBPresent(presentId: UUID().uuidString, name: presentName, urlText: presentUrlForMarket, presentFromUserId: "", isReserved: false, presentDescription: presentDescription)
+                            try await viewModel.setPresentInFirestore(newPresent: newDBPresent)
+                        }
+                        
+                        
+                        
+                        
                         dismiss()
                     }) {
                         Text("Создать")
