@@ -20,6 +20,7 @@
 		4ED21A402B091077001D016B /* SignInEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED21A3F2B091077001D016B /* SignInEmailView.swift */; };
 		4ED21A452B091589001D016B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED21A442B091589001D016B /* RootView.swift */; };
 		4ED21A482B0A1963001D016B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED21A472B0A1963001D016B /* SettingView.swift */; };
+		4ED2F43C2B17095A00EE7004 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED2F43B2B17095A00EE7004 /* UserManager.swift */; };
 		4ED389C82A91574E007E30D1 /* AuthViewFirebaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED389C72A91574E007E30D1 /* AuthViewFirebaseApp.swift */; };
 		4ED389CA2A91574E007E30D1 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED389C92A91574E007E30D1 /* AuthView.swift */; };
 		4ED389CC2A91574F007E30D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ED389CB2A91574F007E30D1 /* Assets.xcassets */; };
@@ -93,6 +94,7 @@
 		4ED21A3F2B091077001D016B /* SignInEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailView.swift; sourceTree = "<group>"; };
 		4ED21A442B091589001D016B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		4ED21A472B0A1963001D016B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		4ED2F43B2B17095A00EE7004 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		4ED389C42A91574E007E30D1 /* Wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ED389C72A91574E007E30D1 /* AuthViewFirebaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewFirebaseApp.swift; sourceTree = "<group>"; };
 		4ED389C92A91574E007E30D1 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		4ED21A412B09111F001D016B /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				4ED2F43A2B17094B00EE7004 /* Firestore */,
 				4ED38A022A926008007E30D1 /* AuthService.swift */,
 				4EEF22032AB65515001B736F /* StorageService.swift */,
 				4ED38A082A9269CC007E30D1 /* DataBaseService.swift */,
@@ -230,6 +233,14 @@
 				4ED21A442B091589001D016B /* RootView.swift */,
 			);
 			path = RootView;
+			sourceTree = "<group>";
+		};
+		4ED2F43A2B17094B00EE7004 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				4ED2F43B2B17095A00EE7004 /* UserManager.swift */,
+			);
+			path = Firestore;
 			sourceTree = "<group>";
 		};
 		4ED389BB2A91574E007E30D1 = {
@@ -666,6 +677,7 @@
 				4EEF21F52AA3FF96001B736F /* HeaderFriendHome.swift in Sources */,
 				4ED21A452B091589001D016B /* RootView.swift in Sources */,
 				4ED389F22A924B1F007E30D1 /* MainTabBar.swift in Sources */,
+				4ED2F43C2B17095A00EE7004 /* UserManager.swift in Sources */,
 				4ED389F62A924D43007E30D1 /* FriendsView.swift in Sources */,
 				4EEF22022AB649F5001B736F /* ImagePicker.swift in Sources */,
 				4EEF21C62A9CFC90001B736F /* PresentCellView.swift in Sources */,

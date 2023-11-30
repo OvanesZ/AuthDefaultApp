@@ -77,10 +77,10 @@ struct FriendsView: View {
                                 
                             }
                             .onDelete { indexSet in
-                                let number = indexSet.first
-                                let email = friendViewModel.allFriendsUser[number ?? 0].email
-                                friendViewModel.allFriendsUser.remove(atOffsets: indexSet)
-                                friendViewModel.removingFriendFromFriends(email)
+//                                let number = indexSet.first
+//                                let email = friendViewModel.allFriendsUser[number ?? 0].email
+//                                friendViewModel.allFriendsUser.remove(atOffsets: indexSet)
+//                                friendViewModel.removingFriendFromFriends(email)
                             }
                         }
                         .onAppear(perform: friendViewModel.fetchUsers)

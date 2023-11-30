@@ -6,7 +6,6 @@
 //
 
 import Combine
-import FirebaseAuth
 import FirebaseFirestoreSwift
 import FirebaseFirestore
 import FirebaseStorage
@@ -22,19 +21,6 @@ final class FriendsViewModel: ObservableObject {
     
     var myFriendsID: [String] = [" "]
     var myRequestID: [String] = [" "]
-    
-    var currentUser = Auth.auth().currentUser
-//    let friend: UserModel
-    
- 
-//    init(friend: UserModel) {
-//        self.friend = friend
-//
-////        fetchUsers()
-////        getFriends()
-////        getRequest()
-//    }
-    
     
     // MARK: -- Прослушиватель всех пользователей
     
@@ -53,17 +39,17 @@ final class FriendsViewModel: ObservableObject {
     
     // MARK: -- Удаляю друга из коллекции "Friends"
     
-    func removingFriendFromFriends(_ email: String) {
-        let docRef = Firestore.firestore().collection("User").document(currentUser?.email ?? "").collection("Friends").document(email)
-        
-        docRef.delete() { error in
-            if let error = error {
-                print(error)
-            } else {
-                print("Пользователь удален успешно")
-            }
-        }
-    }
+//    func removingFriendFromFriends(_ email: String) {
+//        let docRef = Firestore.firestore().collection("User").document(currentUser?.email ?? "").collection("Friends").document(email)
+//
+//        docRef.delete() { error in
+//            if let error = error {
+//                print(error)
+//            } else {
+//                print("Пользователь удален успешно")
+//            }
+//        }
+//    }
     
     
     

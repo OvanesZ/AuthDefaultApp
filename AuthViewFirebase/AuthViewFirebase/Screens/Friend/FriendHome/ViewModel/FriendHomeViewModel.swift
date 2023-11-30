@@ -143,7 +143,6 @@ class FriendHomeViewModel: ObservableObject {
         } else {
             return
         }
-        
     }
     
     
