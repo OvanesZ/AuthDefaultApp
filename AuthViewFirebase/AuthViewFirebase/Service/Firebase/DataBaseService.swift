@@ -15,11 +15,11 @@ class DatabaseService {
     private let db = Firestore.firestore()
     
     private var usersRef: CollectionReference {
-        return db.collection("Users")
+        return db.collection("users")
     }
     
     private var presentRef: CollectionReference {
-        return db.collection("Wishlist")
+        return db.collection("wishlist")
     }
     private init() { }
     
@@ -74,7 +74,7 @@ class DatabaseService {
             switch result {
             case .success(let sizeInfo):
                 print(sizeInfo)
-                self.usersRef.document(AuthService.shared.currentUser!.uid).collection("Wishlist").document(present.id).setData(present.representation) { error in
+                self.usersRef.document(AuthService.shared.currentUser!.uid).collection("wishlist").document(present.id).setData(present.representation) { error in
                     if let error = error {
                         completion(.failure(error))
                     } else {

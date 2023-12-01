@@ -140,10 +140,10 @@ struct NewPresentView: View {
                         
                         
                         // Запрос выполняется асинхронно для нового типа пользователя
-                        Task {
-                            let newDBPresent = DBPresent(presentId: UUID().uuidString, name: presentName, urlText: presentUrlForMarket, presentFromUserId: "", isReserved: false, presentDescription: presentDescription)
-                            try await viewModel.setPresentInFirestore(newPresent: newDBPresent)
-                        }
+//                        Task {
+//                            let newDBPresent = DBPresent(presentId: UUID().uuidString, name: presentName, urlText: presentUrlForMarket, presentFromUserId: "", isReserved: false, presentDescription: presentDescription)
+//                            try await viewModel.setPresentInFirestore(newPresent: newDBPresent)
+//                        }
                         
                         
                         
