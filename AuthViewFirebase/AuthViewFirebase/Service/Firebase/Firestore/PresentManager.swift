@@ -73,8 +73,7 @@ final class PresentManager {
     
     func createNewPresent(userId: String, present: DBPresent) async throws {
 //        try presentDocument(presentId: present.presentId).setData(from: present, merge: false)
-        try Firestore.firestore().collection("users").document(userId).collection("wishlist").document(present.presentId).setData(from: present, merge: false)
-    }
+        try Firestore.firestore().collection("users").document(userId).collection("wishlist").document(present.presentId).setData(from: present, merge: false)    }
     
     func getPresent(presentId: String) async throws -> DBPresent {
         try await presentDocument(presentId: presentId).getDocument(as: DBPresent.self)
@@ -86,6 +85,24 @@ final class PresentManager {
 //        ]
 //        try await userDocument(userId: userId).updateData(data)
 //    }
+    
+    
+  
+    func setNewPresent(userId: String, present: DBPresent, image: Data, completion: @escaping (Result <DBPresent, Error>) -> ()) {
+        StorageService.shared.uploadPresentImage(id: present.presentId, image: image) { result in
+            switch result {
+            case .success(_):
+                do {
+                    try Firestore.firestore().collection("users").document(userId).collection("wishlist").document(present.presentId).setData(from: present, merge: false)
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     
     
 }

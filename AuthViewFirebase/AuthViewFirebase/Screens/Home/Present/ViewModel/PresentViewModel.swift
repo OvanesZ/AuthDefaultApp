@@ -44,13 +44,26 @@ class PresentModelViewModel: ObservableObject {
         }
     }
     
-    // Новый асинхронный запрос для создания подарка
+    // Новый асинхронный запрос для создания подарка. Отключить до лучших времен
     
     func setPresentInFirestore(newPresent: DBPresent) async throws {
         try await PresentManager.shared.createNewPresent(userId: currentUser!.uid, present: newPresent)
     }
     
+    // Новый запрос для создания подарка с картинкой
     
+    func setNewPresentInFirestore(newPresent: DBPresent) {
+        guard let imageData = uiImage.jpegData(compressionQuality: 0.75) else { return }
+        
+        PresentManager.shared.setNewPresent(userId: currentUser!.uid, present: newPresent, image: imageData) { result in
+            switch result {
+            case .success(let present):
+                print("Подарок с именем \(present.name ?? "")добавлен")
+            case .failure(let error):
+                print("Ошибка при отправке данных на сервер \(error.localizedDescription)")
+            }
+        }
+    }
     
     
     
