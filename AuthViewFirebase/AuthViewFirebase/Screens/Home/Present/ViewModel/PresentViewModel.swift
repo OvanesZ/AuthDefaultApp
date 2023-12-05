@@ -103,7 +103,7 @@ class PresentModelViewModel: ObservableObject {
     //MARK: -- Резерв подарка без информации о друге 
     
     func reservingPresentForUserID(_ present: PresentModel, _ friendID: String) {
-        let docRef = Firestore.firestore().collection("Users").document(friendID).collection("Wishlist").document(present.id)
+        let docRef = Firestore.firestore().collection("users").document(friendID).collection("wishlist").document(present.id)
         
         docRef.updateData([
             "isReserved": true
