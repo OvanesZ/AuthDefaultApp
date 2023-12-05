@@ -75,7 +75,7 @@ class FriendHomeViewModel: ObservableObject {
     // MARK: -- Прослушиватель коллекции wishlist друга
     
     func fetchWishlistFriend() {
-        let docRef = Firestore.firestore().collection("Users").document(friend.id).collection("Wishlist")
+        let docRef = Firestore.firestore().collection("users").document(friend.id).collection("wishlist")
         docRef.addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)

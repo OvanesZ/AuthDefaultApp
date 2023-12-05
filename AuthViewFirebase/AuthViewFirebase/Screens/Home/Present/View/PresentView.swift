@@ -146,7 +146,6 @@ struct PresentModalView: View {
                 
                 Button(action: {
                     presentModelViewModel.removingPresentFromWishlist(currentPresent.id)
-                    // TODO Storage service
                     presentModelViewModel.deletePresentImage()
                 }) {
                     Image(systemName: "trash")
